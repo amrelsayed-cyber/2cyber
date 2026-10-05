@@ -159,22 +159,23 @@ body{background:radial-gradient(900px 420px at 85% -80px,#D9EFED 0,transparent 7
 .pick .dtabs{flex:1;min-width:0;margin:0}
 .pick select{width:auto;border:1px solid var(--line);border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:500;cursor:pointer}
 
-/* ===== الجدول للكمبيوتر (مُحدَّث) ===== */
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;width:100%;max-width:100%;background:var(--card)}
-.tt{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;table-layout:fixed}
-.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:12px 8px;text-align:center;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;height:70px}
-.tt thead th{background:var(--bg);font-weight:600;padding:14px 8px}
-.tt thead small{display:block;color:var(--mut);font-weight:400;font-size:11px;margin-top:4px}
-.tt th.g{background:var(--ink);color:#fff;width:100px;font-weight:700;position:sticky;inset-inline-end:0;z-index:2}
-.tt th.n{background:var(--acs);color:var(--ac);width:110px;font-size:12px;position:sticky;inset-inline-end:100px;z-index:2}
+/* ===== كود الجدول الصحيح ===== */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+.tt{border-collapse:separate;border-spacing:0;width:100%;min-width:980px;font-size:13px}
+.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle}
+.tt thead th{background:var(--bg);font-weight:600}
+.tt thead small{display:block;color:var(--mut);font-weight:400;font-size:11px}
+.tt th.g{background:var(--ink);color:#fff;width:64px;font-weight:700;position:sticky;inset-inline-start:0;z-index:2}
+.tt th.n{background:var(--acs);color:var(--ac);width:76px;font-size:12px;position:sticky;inset-inline-start:64px;z-index:2}
 .tt thead th.g,.tt thead th.n{font-size:11px}
-.tt td{height:70px}
+.tt td{min-width:150px;height:64px}
 .tt td.emp{background:#FAFBFD}
 .tt tr.gs>*{border-top:2px solid var(--ink)}
-.tt .ev{margin:0;text-align:start;background:var(--bg);padding:10px 12px;border-radius:8px;border-inline-start:3px solid var(--ac)}
-.tt .ev.sec{border-color:var(--gold)}
-.tt .ev b{font-size:13px;line-height:1.5;display:block;margin-bottom:4px}
-.tt .ev small{font-size:11px;color:var(--mut)}
+.tt .ev{margin:0;text-align:start;background:var(--bg);padding:8px 10px}
+.tt .ev b{font-size:13px;line-height:1.5}
+.tt.one{min-width:0}
+.tt.one td{min-width:100px;height:auto}
+
 .note{background:#FBF4E4;border:1px solid #F0E2BE;border-radius:14px;padding:14px 18px;color:#6B4E12;font-size:14px;margin-bottom:16px;max-width:520px}
 @media(max-width:780px){.svcs{grid-template-columns:1fr 1fr!important;gap:12px}.svc{padding:18px!important;min-height:0}.svc b{font-size:15px}.svc .ic{width:46px;height:46px}.svc span{font-size:12px}}
 dialog{margin:auto}
@@ -201,8 +202,6 @@ dialog{margin:auto}
 .swipe.show{display:flex}
 .swipe .i{width:16px;height:16px;animation:nudge 1.4s ease-in-out infinite}
 @keyframes nudge{0%,100%{transform:translateX(0) scaleX(-1)}50%{transform:translateX(7px) scaleX(-1)}}
-.tt.one{min-width:0}
-.tt.one td{min-width:100px;height:auto}
 @media(min-width:641px) and (max-width:1024px){
 .svcs{grid-template-columns:1fr 1fr!important;gap:16px}
 .svc{padding:24px!important;min-height:180px}
@@ -341,6 +340,7 @@ const LEADER_MSG = `مرحباً م/ عمرو السيد،\nطلب بيانات�
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const ico = n => `<svg class="i"><use href="#${n}"/></svg>`;
 
 $('#waTop').href = wa(LEADER_MSG);
 $('#waLead').href = wa(LEADER_MSG);
@@ -348,7 +348,7 @@ $('#waLead').href = wa(LEADER_MSG);
 // ========== التنقل ==========
 const navItems = [['home','home','الرئيسية'],['subjects','book','المواد'],['groups','users','الجروبات'],['request','mail','البيانات الجامعية']];
 $('#nav').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${n[2]}</button>`).join('');
-$('#tabbar').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')"><svg class="i" style="width:18px;height:18px"><use href="#${n[1]}"/></svg>${n[2]}</button>`).join('');
+$('#tabbar').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${ico(n[1])}${n[2]}</button>`).join('');
 $$('[data-v="home"]').forEach(b => b.classList.add('on'));
 
 function show(id, sub) {
@@ -378,71 +378,39 @@ const services = [
   ["request", "mail", "طلب البيانات الجامعية", "الإيميل الجامعي أو الكود عن طريق الليدر."],
   ["leader", "chat", "التواصل مع الليدر", "لأي استفسار أو مشكلة أو اقتراح."]
 ];
-$('#svcs').innerHTML = services.map(s => `<button class="svc" onclick="go('${s[0]}')"><span class="ic"><svg class="i"><use href="#${s[1]}"/></svg></span><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div></button>`).join('');
+$('#svcs').innerHTML = services.map(s => `<button class="svc" onclick="go('${s[0]}')"><span class="ic">${ico(s[1])}</span><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div></button>`).join('');
 
 // ========== الجدول الدراسي ==========
-let days = [], periods = [], ordn = ["الأولى","الثانية","الثالثة","الرابعة","الخامسة"], groups = {}, schedule = [];
+const days = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
+const periods = ["8:30 – 10:00", "10:15 – 11:45", "12:00 – 1:30", "1:45 – 3:15", "3:30 – 5:00"];
+const ordn = ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"];
+const groups = { B1: [1, 3], B2: [4, 6], B3: [7, 10] };
+const schedule = [
+  { d: "السبت", per: 1, g: "B1", t: "مثال: اسم المادة", k: "محاضرة", who: "د. فلان", p: "مدرج زويل" },
+  { d: "السبت", per: 2, s: 1, t: "مثال: اسم المادة", k: "سكشن", who: "م. فلانة", p: "معمل 3" }
+];
+
 let curDay = '', curSec = 0;
 try { curSec = +localStorage.getItem('sec') || 0 } catch(e) {}
 if (curSec < 0 || curSec > 10) curSec = 0;
 
-async function loadSchedule() {
-  try {
-    const res = await fetch('schedule.json?v=' + new Date().getTime());
-    const data = await res.json();
-    days = data.days || [];
-    periods = data.periods || [];
-    groups = data.groups || {};
-    schedule = data.schedule || [];
-    
-    const todayName = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"][new Date().getDay()];
-    curDay = days.includes(todayName) ? todayName : (days[0] || '');
-    
-    $('#dayTabs').innerHTML = days.map(d => `<button data-d="${d}" class="${d === todayName ? 'today' : ''}" onclick="pickDay('${d}')">${d}</button>`).join('');
-    $('#daySel').innerHTML = days.map(d => `<option value="${d}">${d}${d === todayName ? ' (اليوم)' : ''}</option>`).join('');
-    $('#daySel').value = curDay;
-    
-    let secOpts = '<option value="0">كل السكاشن</option>';
-    Object.keys(groups).forEach(k => {
-      secOpts += `<optgroup label="${k}">`;
-      for (let i = groups[k][0]; i <= groups[k][1]; i++) {
-        secOpts += `<option value="${i}">سكشن ${i} — ${k}</option>`;
-      }
-      secOpts += '</optgroup>';
-    });
-    $('#secSel').innerHTML = secOpts;
-    $('#secSel').value = curSec;
-    
-    drawSched();
-  } catch(e) {
-    $('#week').innerHTML = '<div class="none">لم يتم تحميل الجدول بعد. تأكد من وجود ملف schedule.json.</div>';
-  }
-}
+const todayName = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"][new Date().getDay()];
+curDay = days.includes(todayName) ? todayName : days[0];
 
-function pickDay(d) { curDay = d; drawSched(); }
-function setSec(v) { 
-  curSec = +v; 
-  try { localStorage.setItem('sec', v) } catch(e) {}
-  drawSched();
-}
+const norm = e => e.g ? { ...e, s: groups[e.g][0], n: groups[e.g][1] - groups[e.g][0] + 1 } : { ...e, n: e.n || 1 };
+const info = x => `<small>${x.k} • ${x.who}${x.p ? ' • ' + x.p : ''}</small>`;
 
 function drawSched() {
   $$('#dayTabs button').forEach(b => b.classList.toggle('on', b.dataset.d === curDay));
   $('#daySel').value = curDay;
-  
-  const norm = e => e.g ? { ...e, s: groups[e.g][0], n: groups[e.g][1] - groups[e.g][0] + 1 } : { ...e, n: e.n || 1 };
-  const es = schedule.filter(x => x.d === curDay).map(norm);
-  
-  const info = x => `<small>${x.k} • ${x.who}${x.p ? ' • ' + x.p : ''}</small>`;
-  const card = x => `<div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><time>الفترة ${ordn[x.per-1]} • ${periods[x.per-1]}</time><b>${x.t}</b>${info(x)}</div>`;
-  const mineOf = n => es.filter(x => n >= x.s && n < x.s + x.n).sort((a,b) => a.per - b.per);
+  const es = schedule.filter(x => x.d === curDay).map(norm), w = $('#week');
+  const card = x => `<div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><time>الفترة ${ordn[x.per - 1]} • ${periods[x.per - 1]}</time><b>${x.t}</b>${info(x)}</div>`;
+  const mineOf = n => es.filter(x => n >= x.s && n < x.s + x.n).sort((a, b) => a.per - b.per);
   const gOf = n => Object.keys(groups).find(k => n >= groups[k][0] && n <= groups[k][1]);
-  const secs = curSec ? [curSec] : Array.from({length: 10}, (_, i) => i + 1);
-  
+  const secs = curSec ? [curSec] : Array.from({ length: 10 }, (_, i) => i + 1);
   const occ = {};
   if (curSec) mineOf(curSec).forEach(x => occ[curSec + '-' + x.per] = x);
   else es.forEach(x => { occ[x.s + '-' + x.per] = x; for (let i = 1; i < x.n; i++) occ[(x.s + i) + '-' + x.per] = 'skip' });
-  
   let h = `<table class="tt${curSec ? ' one' : ''}"><thead><tr><th class="g">المجموعة</th><th class="n">السكشن</th>` + periods.map((t, i) => `<th>الفترة ${ordn[i]}<small>${t}</small></th>`).join('') + '</tr></thead><tbody>';
   secs.forEach(n => {
     const g = gOf(n), first = curSec || n === groups[g][0];
@@ -450,25 +418,28 @@ function drawSched() {
     for (let p = 1; p <= 5; p++) { const x = occ[n + '-' + p]; if (x === 'skip') continue; h += x ? `<td rowspan="${curSec ? 1 : x.n}"><div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><b>${x.t}</b>${info(x)}</div></td>` : '<td class="emp"></td>' }
     h += '</tr>';
   });
-  
   let l = '';
-  (curSec ? [gOf(curSec)] : Object.keys(groups)).forEach(k => {
-    l += `<div class="mg">${k}</div>`;
-    secs.filter(n => gOf(n) === k).forEach(n => {
-      const m = mineOf(n);
-      l += `<div class="ms"><h5>سكشن ${n}</h5>${m.length ? m.map(card).join('') : '<p class="none">لا يوجد</p>'}</div>`;
-    });
-  });
-  
-  $('#week').innerHTML = `<div class="swipe"><svg class="i"><use href="#arr"/></svg>اسحب لليمين لعرض باقي الجدول</div><div class="tw">${h}</tbody></table></div><div class="ml">${l}</div>`;
-  
-  const tw = $('#week .tw'), hn = $('#week .swipe');
-  if (tw && hn) {
-    hn.classList.toggle('show', tw.scrollWidth > tw.clientWidth + 4);
-    tw.onscroll = () => { if (Math.abs(tw.scrollLeft) > 20) hn.classList.remove('show') };
-  }
+  (curSec ? [gOf(curSec)] : Object.keys(groups)).forEach(k => { l += `<div class="mg">${k}</div>`; secs.filter(n => gOf(n) === k).forEach(n => { const m = mineOf(n); l += `<div class="ms"><h5>سكشن ${n}</h5>${m.length ? m.map(card).join('') : '<p class="none">لا يوجد</p>'}</div>` }) });
+  w.className = 'full';
+  w.innerHTML = `<div class="swipe">${ico('arr')}اسحب لليمين لعرض باقي الجدول</div><div class="tw">${h}</tbody></table></div><div class="ml">${l}</div>`;
+  swipeHint();
 }
-addEventListener('resize', () => { const tw = $('#week .tw'), hn = $('#week .swipe'); if (tw && hn) hn.classList.toggle('show', tw.scrollWidth > tw.clientWidth + 4) });
+
+function swipeHint() {
+  const tw = $('#week .tw'), hn = $('#week .swipe'); if (!tw || !hn) return;
+  hn.classList.toggle('show', tw.scrollWidth > tw.clientWidth + 4);
+  tw.onscroll = () => { if (Math.abs(tw.scrollLeft) > 20) hn.classList.remove('show') };
+}
+addEventListener('resize', swipeHint);
+
+function pickDay(d) { curDay = d; drawSched(); }
+function setSec(v) { curSec = +v; try { localStorage.setItem('sec', v) } catch(e) {} drawSched(); }
+
+$('#dayTabs').innerHTML = days.map(d => `<button data-d="${d}" class="${d === todayName ? 'today' : ''}" onclick="pickDay('${d}')">${d}</button>`).join('');
+$('#secSel').innerHTML = '<option value="0">كل السكاشن</option>' + Object.keys(groups).map(k => `<optgroup label="${k}">` + Array.from({ length: groups[k][1] - groups[k][0] + 1 }, (_, i) => `<option value="${groups[k][0] + i}">سكشن ${groups[k][0] + i} — ${k}</option>`).join('') + '</optgroup>').join('');
+$('#daySel').innerHTML = days.map(d => `<option value="${d}">${d}${d === todayName ? ' (اليوم)' : ''}</option>`).join('');
+$('#secSel').value = curSec;
+drawSched();
 
 // ========== المواد الدراسية ==========
 let subjectsData = [];
@@ -628,7 +599,7 @@ function openGrp(title) {
         if (groups === "notexist" || (Array.isArray(groups) && groups.length === 0)) {
           return `<div class="row"><span>${name}</span><span class="grp-row-empty">لا يوجد جروب حتى الآن</span></div>`;
         }
-        return groups.sort((a,b)=>a.order-b.order).map(g => {
+        return groups.sort((a, b) => a.order - b.order).map(g => {
           const style = platformStyles[g.type] || { color: '#6c757d', icon: 'file' };
           return `<div class="row"><span>${name}</span><a class="btn sm" href="${g.link}" target="_blank" rel="noopener" style="background:${style.color}">${g.type}</a></div>`;
         }).join('');
@@ -673,7 +644,7 @@ function sendReq(e) {
 }
 
 // ========== Back buttons + initial route ==========
-$$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin', `<button class="back" onclick="back()"><svg class="i"><use href="#arr"/></svg>رجوع</button>`) });
+$$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin', `<button class="back" onclick="back()">${ico('arr')}رجوع</button>`) });
 {
   const h = location.hash.slice(1).split('/'), e = document.getElementById(h[0]), f = e && e.classList.contains('view') ? h[0] : 'home';
   history.replaceState({ v: f, sub: h[1] || null, n: 0 }, '');
@@ -681,7 +652,6 @@ $$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin
 }
 
 // ========== تحميل كل البيانات ==========
-loadSchedule();
 loadMaterials();
 loadGroups();
 </script>
