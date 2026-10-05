@@ -159,20 +159,22 @@ body{background:radial-gradient(900px 420px at 85% -80px,#D9EFED 0,transparent 7
 .pick .dtabs{flex:1;min-width:0;margin:0}
 .pick select{width:auto;border:1px solid var(--line);border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:500;cursor:pointer}
 
-/* ===== إصلاح الجدول - الجزء الأساسي ===== */
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;max-width:100%;width:100%}
+/* ===== الجدول للكمبيوتر (مُحدَّث) ===== */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;width:100%;max-width:100%;background:var(--card)}
 .tt{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;table-layout:fixed}
-.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle;overflow:hidden;text-overflow:ellipsis}
-.tt thead th{background:var(--bg);font-weight:600}
-.tt thead small{display:block;color:var(--mut);font-weight:400;font-size:11px}
-.tt th.g{background:var(--ink);color:#fff;width:80px;font-weight:700;position:sticky;inset-inline-end:0;z-index:2}
-.tt th.n{background:var(--acs);color:var(--ac);width:90px;font-size:12px;position:sticky;inset-inline-end:80px;z-index:2}
+.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:12px 8px;text-align:center;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;height:70px}
+.tt thead th{background:var(--bg);font-weight:600;padding:14px 8px}
+.tt thead small{display:block;color:var(--mut);font-weight:400;font-size:11px;margin-top:4px}
+.tt th.g{background:var(--ink);color:#fff;width:100px;font-weight:700;position:sticky;inset-inline-end:0;z-index:2}
+.tt th.n{background:var(--acs);color:var(--ac);width:110px;font-size:12px;position:sticky;inset-inline-end:100px;z-index:2}
 .tt thead th.g,.tt thead th.n{font-size:11px}
-.tt td{height:64px}
+.tt td{height:70px}
 .tt td.emp{background:#FAFBFD}
 .tt tr.gs>*{border-top:2px solid var(--ink)}
-.tt .ev{margin:0;text-align:start;background:var(--bg);padding:8px 10px}
-.tt .ev b{font-size:13px;line-height:1.5}
+.tt .ev{margin:0;text-align:start;background:var(--bg);padding:10px 12px;border-radius:8px;border-inline-start:3px solid var(--ac)}
+.tt .ev.sec{border-color:var(--gold)}
+.tt .ev b{font-size:13px;line-height:1.5;display:block;margin-bottom:4px}
+.tt .ev small{font-size:11px;color:var(--mut)}
 .note{background:#FBF4E4;border:1px solid #F0E2BE;border-radius:14px;padding:14px 18px;color:#6B4E12;font-size:14px;margin-bottom:16px;max-width:520px}
 @media(max-width:780px){.svcs{grid-template-columns:1fr 1fr!important;gap:12px}.svc{padding:18px!important;min-height:0}.svc b{font-size:15px}.svc .ic{width:46px;height:46px}.svc span{font-size:12px}}
 dialog{margin:auto}
@@ -556,7 +558,6 @@ const platformStyles = {
   'فيسبوك': { color: '#1877F2', icon: 'users' }, 'facebook': { color: '#1877F2', icon: 'users' }
 };
 
-// ترتيب المواد الثابت
 const subjectsOrder = [
   "Data Structures",
   "Networks",
@@ -566,7 +567,6 @@ const subjectsOrder = [
   "Operations Research"
 ];
 
-// عدد الدكاترة والمعيدين لكل مادة (ثابت)
 const staffCounts = {
   "Data Structures": { doctors: 2, tas: 2 },
   "Networks": { doctors: 2, tas: 2 },
@@ -604,9 +604,7 @@ function renderSubjectGroups(subjects) {
   const html = subjectsOrder.map(title => {
     const data = subjects[title];
     if (!data) return '';
-    
     const counts = staffCounts[title] || { doctors: 0, tas: 0 };
-    
     return `<button class="card" onclick="openGrp('${title}')">
       <span class="tag">جروبات</span>
       <h3>${title}</h3>
@@ -617,7 +615,6 @@ function renderSubjectGroups(subjects) {
       </footer>
     </button>`;
   }).join('');
-  
   $('#grpGrid').innerHTML = html || '<div class="mid"><p>لا توجد جروبات مضافة حالياً.</p></div>';
 }
 
@@ -625,9 +622,7 @@ function openGrp(title) {
   fetch('groups.json?v=' + new Date().getTime()).then(r => r.json()).then(data => {
     const s = data.subjects[title];
     if (!s) return;
-    
     $('#dCode').textContent = "جروبات"; $('#dTitle').textContent = title;
-    
     const renderList = (peopleObj) => {
       return Object.entries(peopleObj || {}).map(([name, groups]) => {
         if (groups === "notexist" || (Array.isArray(groups) && groups.length === 0)) {
@@ -639,7 +634,6 @@ function openGrp(title) {
         }).join('');
       }).join('');
     };
-    
     $('#dDocs').innerHTML = renderList(s.doctors) || '<p class="grp-row-empty">لا توجد جروبات للدكاترة</p>';
     $('#dTas').innerHTML = renderList(s.tas) || '<p class="grp-row-empty">لا توجد جروبات للمعيدين</p>';
     $('#dlg').showModal();
@@ -674,7 +668,6 @@ function sendReq(e) {
   const phone = $('#rp').value.trim();
   const req = $('#rt').value;
   const notes = $('#rm').value.trim() || '-';
-  
   const msg = `مرحباً م/ عمرو السيد،\nطلب بياناتي جامعية.\n- الاسم بالكامل: ${name}\n- رقم الواتساب: ${phone}\n- المطلوب: ${req}\n- ملاحظات: ${notes}`;
   open(wa(msg), '_blank');
 }
