@@ -102,13 +102,15 @@ dialog h4{font-size:14px;font-weight:600;margin:18px 0 4px;color:var(--mut)}
 footer.f{border-top:1px solid var(--line);background:#fff;padding:20px 0;text-align:center;color:var(--mut);font-size:13px}
 @media(max-width:780px){.hero,.grid2{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}.brand small{display:none}main{padding-top:20px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== الجدول الدراسي ===== */
 .sched{padding:28px;margin-bottom:20px;box-shadow:0 12px 32px -18px rgba(15,32,56,.18)}
 .sched-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
 .sched-h h2{font-size:24px;font-weight:700}
 .key{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
 .key i{width:4px;height:16px;border-radius:2px;background:var(--ac);padding:0;margin:0 0 0 0}
 .key i.sec{background:var(--gold);margin-inline-start:10px}
-.week{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.week{display:grid;grid-template-columns:1fr;gap:14px}
 .day{background:var(--bg);border-radius:14px;padding:14px;min-height:300px}
 .day.now{background:var(--acs);outline:1.5px solid var(--ac)}
 .day h4{font-size:15px;font-weight:700;margin-bottom:10px}
@@ -156,15 +158,17 @@ body{background:radial-gradient(900px 420px at 85% -80px,#D9EFED 0,transparent 7
 .pick{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
 .pick .dtabs{flex:1;min-width:0;margin:0}
 .pick select{width:auto;border:1px solid var(--line);border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:500;cursor:pointer}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-.tt{border-collapse:separate;border-spacing:0;width:100%;min-width:980px;font-size:13px}
-.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle}
+
+/* ===== إصلاح الجدول - الجزء الأساسي ===== */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;max-width:100%;width:100%}
+.tt{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;table-layout:fixed}
+.tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle;overflow:hidden;text-overflow:ellipsis}
 .tt thead th{background:var(--bg);font-weight:600}
 .tt thead small{display:block;color:var(--mut);font-weight:400;font-size:11px}
-.tt th.g{background:var(--ink);color:#fff;width:64px;font-weight:700;position:sticky;inset-inline-start:0;z-index:2}
-.tt th.n{background:var(--acs);color:var(--ac);width:76px;font-size:12px;position:sticky;inset-inline-start:64px;z-index:2}
+.tt th.g{background:var(--ink);color:#fff;width:80px;font-weight:700;position:sticky;inset-inline-end:0;z-index:2}
+.tt th.n{background:var(--acs);color:var(--ac);width:90px;font-size:12px;position:sticky;inset-inline-end:80px;z-index:2}
 .tt thead th.g,.tt thead th.n{font-size:11px}
-.tt td{min-width:150px;height:64px}
+.tt td{height:64px}
 .tt td.emp{background:#FAFBFD}
 .tt tr.gs>*{border-top:2px solid var(--ink)}
 .tt .ev{margin:0;text-align:start;background:var(--bg);padding:8px 10px}
@@ -374,7 +378,7 @@ const services = [
 ];
 $('#svcs').innerHTML = services.map(s => `<button class="svc" onclick="go('${s[0]}')"><span class="ic"><svg class="i"><use href="#${s[1]}"/></svg></span><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div></button>`).join('');
 
-// ========== الجدول الدراسي (ديناميكي من schedule.json) ==========
+// ========== الجدول الدراسي ==========
 let days = [], periods = [], ordn = ["الأولى","الثانية","الثالثة","الرابعة","الخامسة"], groups = {}, schedule = [];
 let curDay = '', curSec = 0;
 try { curSec = +localStorage.getItem('sec') || 0 } catch(e) {}
@@ -456,7 +460,6 @@ function drawSched() {
   
   $('#week').innerHTML = `<div class="swipe"><svg class="i"><use href="#arr"/></svg>اسحب لليمين لعرض باقي الجدول</div><div class="tw">${h}</tbody></table></div><div class="ml">${l}</div>`;
   
-  // swipe hint
   const tw = $('#week .tw'), hn = $('#week .swipe');
   if (tw && hn) {
     hn.classList.toggle('show', tw.scrollWidth > tw.clientWidth + 4);
@@ -465,7 +468,7 @@ function drawSched() {
 }
 addEventListener('resize', () => { const tw = $('#week .tw'), hn = $('#week .swipe'); if (tw && hn) hn.classList.toggle('show', tw.scrollWidth > tw.clientWidth + 4) });
 
-// ========== المواد الدراسية (ديناميكي من index.json) ==========
+// ========== المواد الدراسية ==========
 let subjectsData = [];
 
 function extractOrderNumber(filePath) {
@@ -546,11 +549,31 @@ function renderSub(id) {
   scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ========== الجروبات (ديناميكي من groups.json) ==========
+// ========== الجروبات ==========
 const platformStyles = {
   'واتساب': { color: '#25D366', icon: 'chat' }, 'whatsapp': { color: '#25D366', icon: 'chat' },
   'تليجرام': { color: '#0088cc', icon: 'mail' }, 'telegram': { color: '#0088cc', icon: 'mail' },
   'فيسبوك': { color: '#1877F2', icon: 'users' }, 'facebook': { color: '#1877F2', icon: 'users' }
+};
+
+// ترتيب المواد الثابت
+const subjectsOrder = [
+  "Data Structures",
+  "Networks",
+  "Logic Design",
+  "Databases",
+  "Operating Systems",
+  "Operations Research"
+];
+
+// عدد الدكاترة والمعيدين لكل مادة (ثابت)
+const staffCounts = {
+  "Data Structures": { doctors: 2, tas: 2 },
+  "Networks": { doctors: 2, tas: 2 },
+  "Logic Design": { doctors: 2, tas: 2 },
+  "Databases": { doctors: 2, tas: 3 },
+  "Operating Systems": { doctors: 1, tas: 3 },
+  "Operations Research": { doctors: 2, tas: 1 }
 };
 
 async function loadGroups() {
@@ -578,10 +601,21 @@ function renderBatchGroups(groups) {
 }
 
 function renderSubjectGroups(subjects) {
-  const html = Object.entries(subjects).map(([title, data]) => {
-    const hasDocs = Object.values(data.doctors || {}).some(g => g !== "notexist" && g.length > 0);
-    const hasTas = Object.values(data.tas || {}).some(g => g !== "notexist" && g.length > 0);
-    return `<button class="card" onclick="openGrp('${title}')"><span class="tag">جروبات</span><h3>${title}</h3><p>الدكاترة والمعيدين</p><footer><span>${hasDocs ? 'متاح' : 'لا يوجد'} دكاترة</span><span>${hasTas ? 'متاح' : 'لا يوجد'} معيدين</span></footer></button>`;
+  const html = subjectsOrder.map(title => {
+    const data = subjects[title];
+    if (!data) return '';
+    
+    const counts = staffCounts[title] || { doctors: 0, tas: 0 };
+    
+    return `<button class="card" onclick="openGrp('${title}')">
+      <span class="tag">جروبات</span>
+      <h3>${title}</h3>
+      <p>الدكاترة والمعيدين</p>
+      <footer>
+        <span>${counts.doctors} دكاترة</span>
+        <span>${counts.tas} معيدين</span>
+      </footer>
+    </button>`;
   }).join('');
   
   $('#grpGrid').innerHTML = html || '<div class="mid"><p>لا توجد جروبات مضافة حالياً.</p></div>';
