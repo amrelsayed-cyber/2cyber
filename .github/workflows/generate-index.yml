@@ -5,6 +5,10 @@ on:
     paths:
       - 'materials/**'
 
+# هذا الجزء هو الحل الجذري لمشكلة رفض الصلاحيات (403 Error)
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
