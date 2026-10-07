@@ -466,21 +466,29 @@ async function loadMaterials() {
   try {
     const res = await fetch('index.json?v=' + new Date().getTime());
     const data = await res.json();
-    subjectsData = Object.entries(data).map(([title, details]) => ({
-      id: title.replace(/\s+/g, '_').toLowerCase(),
-      title: title,
-      code: "الفرقة الثانية",
-      desc: title,
-      doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({
-        name: "د. " + name,
-        items: formatFiles(files)
-      })),
-      tas: Object.entries(details.Sections || {}).map(([name, files]) => ({
-        name: "م. " + name,
-        items: formatFiles(files)
-      })),
-      exams: formatFiles(details.Exams || [])
-    }));
+    
+    // إنشاء subjectsData مع الحفاظ على الترتيب الصحيح
+    subjectsData = subjectsOrder.map(title => {
+      const details = data[title];
+      if (!details) return null;
+      
+      return {
+        id: title.replace(/\s+/g, '_').toLowerCase(),
+        title: title,
+        code: "الفرقة الثانية",
+        desc: title,
+        doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({
+          name: "د. " + name,
+          items: formatFiles(files)
+        })),
+        tas: Object.entries(details.Sections || {}).map(([name, files]) => ({
+          name: "م. " + name,
+          items: formatFiles(files)
+        })),
+        exams: formatFiles(details.Exams || [])
+      };
+    }).filter(item => item !== null); // إزالة أي مواد غير موجودة
+    
     renderSubjects();
   } catch (e) {
     $('#subGrid').innerHTML = '<div class="mid"><p>لم يتم رفع أي ملفات بعد أو جاري التحميل.</p></div>';
