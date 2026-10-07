@@ -29,5 +29,32 @@
     },
     "Sections": {},
     "Exams": []
+  },
+  "Operating Systems": {
+    "Lectures": {
+      "Dr Marwa Abdelilah": []
+    },
+    "Sections": {
+      "Eng Rawan Tarek": [],
+      "Eng Shady Ashraf": [],
+      "Eng Shorouk Osama": []
+    },
+    "Exams": []
+  },
+  "Operations Research": {
+    "Lectures": {
+      "Dr Mahmoud Ismail": [
+        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/01_Chapter_1_OR.pdf",
+        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/02_Chapter_2_OR.pdf"
+      ],
+      "Dr Shereen Zaky": [
+        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/01_Chapter_1_OR.pdf",
+        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/02_Chapter_2_OR.pdf"
+      ]
+    },
+    "Sections": {
+      "Eng Mohamed Gamal": []
+    },
+    "Exams": []
   }
 }
