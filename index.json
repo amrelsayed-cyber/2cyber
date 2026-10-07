@@ -16,6 +16,33 @@
     },
     "Exams": []
   },
+  "Databases": {
+    "Lectures": {
+      "Dr Ahmed Samy": [],
+      "Dr Mohamed Maher": []
+    },
+    "Sections": {
+      "Eng Assem Mostafa": [],
+      "Eng Hassan Hassan": [],
+      "Eng Shawky El-Sayed": []
+    },
+    "Exams": []
+  },
+  "Logic Design": {
+    "Lectures": {
+      "Dr Ahmed Dawood": [
+        "materials/Logic_Design/Lectures/Dr_Ahmed_Dawood/01_Chapter_1.pdf"
+      ],
+      "Dr Asmaa Mohamed": [
+        "materials/Logic_Design/Lectures/Dr_Asmaa_Mohamed/01_Chapter_1.pdf"
+      ]
+    },
+    "Sections": {
+      "Eng Eman Reda": [],
+      "Eng Rahma Abdelkarim": []
+    },
+    "Exams": []
+  },
   "Networks": {
     "Lectures": {
       "Dr Ehab Roshdy": [
