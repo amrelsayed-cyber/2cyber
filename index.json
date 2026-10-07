@@ -2,10 +2,11 @@
   "Data Structures": {
     "Lectures": {
       "Dr Laila Abdelfattah": [
-        "materials/Data_Structures/Lectures/01_Lecture_1.pdf"
+        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/01_Lecture_1.pdf"
       ],
       "Dr Mahmoud Elnamoly": [
-        "materials/Data_Structures/Lectures/01_Lecture_01_Intro.pdf"
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/01_Lecture_01_Intro.pdf",
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/02_Lecture_2_Static_Array.pdf"
       ]
     },
     "Sections": {
@@ -17,12 +18,12 @@
   "Networks": {
     "Lectures": {
       "Dr Ehab Roshdy": [
-        "materials/Networks/Lectures/02_Lecture_2_Network_2027.pdf",
-        "materials/Networks/Lectures/01_Lecture_1_Network_2027.pdf"
+        "materials/Networks/Lectures/Dr_Ehab_Roshdy/02_Lecture_2_Network_2027.pdf",
+        "materials/Networks/Lectures/Dr_Ehab_Roshdy/01_Lecture_1_Network_2027.pdf"
       ],
       "Dr Walaa Elhady": [
-        "materials/Networks/Lectures/02_Lecture_2_Network_2027.pdf",
-        "materials/Networks/Lectures/01_Lecture_1_Network_2027.pdf"
+        "materials/Networks/Lectures/Dr_Walaa_Elhady/02_Lecture_2_Network_2027.pdf",
+        "materials/Networks/Lectures/Dr_Walaa_Elhady/01_Lecture_1_Network_2027.pdf"
       ]
     },
     "Sections": {},
