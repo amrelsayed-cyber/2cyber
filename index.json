@@ -63,7 +63,9 @@
   },
   "Operating Systems": {
     "Lectures": {
-      "Dr Marwa Abdelilah": []
+      "Dr Marwa Abdelilah": [
+        "materials/Operating_Systems/Lectures/Dr_Marwa_Abdelilah/01_Chapter_1_OS.pdf"
+      ]
     },
     "Sections": {
       "Eng Rawan Tarek": [],
