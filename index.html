@@ -68,8 +68,8 @@ h2.sec{font-size:20px;font-weight:700;margin:8px 0 16px}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border:0}
 .row span{font-size:14px;font-weight:500}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin:14px 0 6px;padding-bottom:4px}
-.tabs button{padding:6px 16px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--mut);white-space:nowrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px;padding-bottom:4px}
+.tabs button{padding:6px 16px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--mut);white-space:nowrap;flex-shrink:0}
 .tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .panel h3{font-size:18px;font-weight:600}
 .panel h3+small{color:var(--mut)}
@@ -210,64 +210,6 @@ dialog{margin:auto}
 @media(min-width:641px) and (max-width:1024px){.tabbar{justify-content:center;gap:8px}.tabbar button{max-width:170px}}
 .grp-row-empty { color: var(--mut); font-size: 13px; font-style: italic; padding: 12px 0; text-align: center; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* ===== تحسين تجاوب قسم تفاصيل المواد ===== */
-@media (max-width: 1024px) {
-  /* على التابلت: اجعل المحاضرات والسكاشن فوق بعض */
-  #subDet .grid2 {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-  
-  /* تحسين حجم العناوين */
-  #subDet .panel h3 {
-    font-size: 16px !important;
-  }
-  
-  /* جعل التبويبات (tabs) قابلة للتمرير */
-  #subDet .tabs {
-    overflow-x: auto !important;
-    flex-wrap: nowrap !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  #subDet .tabs button {
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 780px) {
-  /* على الموبايل: تقليل الحشو */
-  #subDet .panel {
-    padding: 16px !important;
-  }
-  
-  /* تحسين عرض قائمة الملفات */
-  #subDet .row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-    padding: 10px 0 !important;
-  }
-  
-  #subDet .row span {
-    font-size: 13px !important;
-  }
-  
-  #subDet .row .btn {
-    align-self: flex-end !important;
-  }
-  
-  /* تحسين حجم العناوين */
-  .vh h2 {
-    font-size: 20px !important;
-  }
-  
-  .vh p {
-    font-size: 13px !important;
-  }
-}
 </style>
 </head>
 <body>
