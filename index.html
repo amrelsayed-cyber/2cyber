@@ -387,7 +387,7 @@ dialog{margin:auto}
     <button class="btn ghost sm" onclick="videoDlg.close()">إغلاق</button>
   </div>
   <div id="lecturesSection">
-    <h4 style="color:var(--ac);margin-bottom:12px"> المحاضرات</h4>
+    <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
     <div id="vLectures" style="margin-bottom:24px"></div>
   </div>
   <div id="sectionsSection">
@@ -627,24 +627,27 @@ function pane(tabsEl, listEl, people) {
 
 function openSub(id) { go('subjects', id) }
 
+// ========== التحكم في ظهور أزرار الفيديوهات ==========
 function updateVideoButtonsVisibility() {
   if (!currentSubjectTitle || !videosLoaded) return;
   
   const data = videosData[currentSubjectTitle] || { Lectures: [], Sections: [] };
-  const hasLectures = data.Lectures && data.Lectures.length > 0;
-  const hasSections = data.Sections && data.Sections.length > 0;
+  
+  // إخفاء الزر إذا: المصفوفة فارغة OR يوجد عنصر فيه hidden: true
+  const hideLectures = !data.Lectures || data.Lectures.length === 0 || data.Lectures.some(v => v.hidden === true);
+  const hideSections = !data.Sections || data.Sections.length === 0 || data.Sections.some(v => v.hidden === true);
   
   const btnLectures = $('#btnLecturesVideos');
   const btnSections = $('#btnSectionsVideos');
   
   if (btnLectures) {
-    if (hasLectures) btnLectures.classList.remove('hidden');
-    else btnLectures.classList.add('hidden');
+    if (hideLectures) btnLectures.classList.add('hidden');
+    else btnLectures.classList.remove('hidden');
   }
   
   if (btnSections) {
-    if (hasSections) btnSections.classList.remove('hidden');
-    else btnSections.classList.add('hidden');
+    if (hideSections) btnSections.classList.add('hidden');
+    else btnSections.classList.remove('hidden');
   }
 }
 
