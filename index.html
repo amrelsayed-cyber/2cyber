@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CyberSecurity | Amr Elsayed</title>
+<title>Cyber's | Amr Elsayed</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F5F7FA;--card:#fff;--ink:#0F2038;--mut:#5A6A7F;--line:#E3E8EF;--ac:#0C7C80;--acs:#E4F3F2;--gold:#B98A2E;--r:16px}
@@ -159,7 +159,6 @@ body{background:radial-gradient(900px 420px at 85% -80px,#D9EFED 0,transparent 7
 .pick .dtabs{flex:1;min-width:0;margin:0}
 .pick select{width:auto;border:1px solid var(--line);border-radius:999px;padding:6px 16px;background:#fff;font-size:13px;font-weight:500;cursor:pointer}
 
-/* ===== كود الجدول الصحيح ===== */
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
 .tt{border-collapse:separate;border-spacing:0;width:100%;min-width:980px;font-size:13px}
 .tt th,.tt td{border-bottom:1px solid var(--line);border-inline-start:1px solid var(--line);padding:8px;text-align:center;vertical-align:middle}
@@ -210,6 +209,13 @@ dialog{margin:auto}
 @media(min-width:641px) and (max-width:1024px){.tabbar{justify-content:center;gap:8px}.tabbar button{max-width:170px}}
 .grp-row-empty { color: var(--mut); font-size: 13px; font-style: italic; padding: 12px 0; text-align: center; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* ===== أنماط أزرار الفيديوهات ===== */
+.btn-youtube { background-color: #FF0000 !important; color: white !important; }
+.btn-youtube:hover { background-color: #cc0000 !important; }
+.btn-drive { background-color: #1A73E8 !important; color: white !important; }
+.btn-drive:hover { background-color: #1557b0 !important; }
+.btn-other { background-color: var(--mut) !important; color: white !important; }
 </style>
 </head>
 <body>
@@ -224,6 +230,7 @@ dialog{margin:auto}
 <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
 <symbol id="arr" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
 <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol>
+<symbol id="video" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
 </defs></svg>
 
 <header><div class="wrap">
@@ -264,7 +271,18 @@ dialog{margin:auto}
     <div class="cards" id="subGrid"><div class="mid"><p>جاري تحميل المواد...</p></div></div>
   </div>
   <div id="subDet" class="hide">
-    <div class="vh"><h2 id="sTitle"></h2><p id="sDesc"></p></div>
+    <div class="vh">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <h2 id="sTitle" style="margin-bottom:4px"></h2>
+          <p id="sDesc" style="margin:0"></p>
+        </div>
+        <button class="btn" style="background:#FF0000;color:white" onclick="openVideoModal(currentSubjectTitle)">
+          <svg class="i" style="width:18px;height:18px;fill:white;stroke:none;margin-left:6px"><use href="#video"/></svg>
+          فيديوهات وتسجيلات
+        </button>
+      </div>
+    </div>
     <div class="grid2">
       <div class="panel"><h3>المحاضرات</h3><small>حسب الدكتور</small><div class="tabs" id="dTabs"></div><div id="dList"></div></div>
       <div class="panel"><h3>السكاشن</h3><small>حسب المعيد</small><div class="tabs" id="tTabs"></div><div id="tList"></div></div>
@@ -324,10 +342,28 @@ dialog{margin:auto}
 
 </div></main>
 
+<!-- Modal الجروبات -->
 <dialog id="dlg"><div>
   <div style="display:flex;justify-content:space-between;align-items:flex-start"><div><span class="tag" id="dCode"></span><h3 id="dTitle" style="font-size:19px;margin-top:6px"></h3></div><button class="btn ghost sm" onclick="dlg.close()">إغلاق</button></div>
   <h4>جروبات الدكاترة</h4><div id="dDocs"></div>
   <h4>جروبات المعيدين</h4><div id="dTas"></div>
+</div></dialog>
+
+<!-- Modal الفيديوهات (جديد) -->
+<dialog id="videoDlg"><div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
+    <div>
+      <span class="tag">تسجيلات وفيديوهات</span>
+      <h3 id="vTitle" style="font-size:19px;margin-top:6px"></h3>
+    </div>
+    <button class="btn ghost sm" onclick="videoDlg.close()">إغلاق</button>
+  </div>
+  
+  <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
+  <div id="vLectures" style="margin-bottom:24px"></div>
+  
+  <h4 style="color:var(--ac);margin-bottom:12px">📝 السكاشن</h4>
+  <div id="vSections"></div>
 </div></dialog>
 
 <nav class="tabbar" id="tabbar"></nav>
@@ -345,6 +381,8 @@ const ico = n => `<svg class="i"><use href="#${n}"/></svg>`;
 $('#waTop').href = wa(LEADER_MSG);
 $('#waLead').href = wa(LEADER_MSG);
 
+let currentSubjectTitle = "";
+
 // ========== التنقل ==========
 const navItems = [['home','home','الرئيسية'],['subjects','book','المواد'],['groups','users','الجروبات'],['request','mail','البيانات الجامعية']];
 $('#nav').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${n[2]}</button>`).join('');
@@ -352,7 +390,10 @@ $('#tabbar').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go
 $$('[data-v="home"]').forEach(b => b.classList.add('on'));
 
 function show(id, sub) {
-  const d = $('#dlg'); if (d && d.open) d.close();
+  const d = $('#dlg'), vd = $('#videoDlg'); 
+  if (d && d.open) d.close();
+  if (vd && vd.open) vd.close();
+  
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id));
   $$('#nav button, #tabbar button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
   if (id === 'subjects') sub ? renderSub(sub) : subBack();
@@ -380,46 +421,69 @@ const services = [
 ];
 $('#svcs').innerHTML = services.map(s => `<button class="svc" onclick="go('${s[0]}')"><span class="ic">${ico(s[1])}</span><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div></button>`).join('');
 
-// ========== الجدول الدراسي ==========
-const days = ["السبت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"];
-const periods = ["8:30 – 10:00", "10:15 – 11:45", "12:00 – 1:30", "1:45 – 3:15", "3:30 – 5:00"];
-const ordn = ["الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"];
-const groups = { B1: [1, 3], B2: [4, 6], B3: [7, 10] };
-const schedule = [
-  { d: "السبت", per: 1, g: "B1", t: "مثال: اسم المادة", k: "محاضرة", who: "د. فلان", p: "مدرج زويل" },
-  { d: "السبت", per: 2, s: 1, t: "مثال: اسم المادة", k: "سكشن", who: "م. فلانة", p: "معمل 3" }
-];
-
+// ========== الجدول الدراسي (ديناميكي من schedule.json) ==========
+let days = [], periods = [], ordn = ["الأولى","الثانية","الثالثة","الرابعة","الخامسة"], groupsData = {}, scheduleData = [];
 let curDay = '', curSec = 0;
 try { curSec = +localStorage.getItem('sec') || 0 } catch(e) {}
 if (curSec < 0 || curSec > 10) curSec = 0;
 
-const todayName = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"][new Date().getDay()];
-curDay = days.includes(todayName) ? todayName : days[0];
+async function loadSchedule() {
+  try {
+    const res = await fetch('schedule.json?v=' + new Date().getTime());
+    const data = await res.json();
+    days = data.days || [];
+    periods = data.periods || [];
+    groupsData = data.groups || {};
+    scheduleData = data.schedule || [];
+    
+    const todayName = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"][new Date().getDay()];
+    curDay = days.includes(todayName) ? todayName : (days[0] || '');
+    
+    $('#dayTabs').innerHTML = days.map(d => `<button data-d="${d}" class="${d === todayName ? 'today' : ''}" onclick="pickDay('${d}')">${d}</button>`).join('');
+    $('#daySel').innerHTML = days.map(d => `<option value="${d}">${d}${d === todayName ? ' (اليوم)' : ''}</option>`).join('');
+    $('#daySel').value = curDay;
+    
+    let secOpts = '<option value="0">كل السكاشن</option>';
+    Object.keys(groupsData).forEach(k => {
+      secOpts += `<optgroup label="${k}">`;
+      for (let i = groupsData[k][0]; i <= groupsData[k][1]; i++) {
+        secOpts += `<option value="${i}">سكشن ${i} — ${k}</option>`;
+      }
+      secOpts += '</optgroup>';
+    });
+    $('#secSel').innerHTML = secOpts;
+    $('#secSel').value = curSec;
+    
+    drawSched();
+  } catch(e) {
+    $('#week').innerHTML = '<div class="none">لم يتم تحميل الجدول بعد. تأكد من وجود ملف schedule.json.</div>';
+  }
+}
 
-const norm = e => e.g ? { ...e, s: groups[e.g][0], n: groups[e.g][1] - groups[e.g][0] + 1 } : { ...e, n: e.n || 1 };
+const norm = e => e.g ? { ...e, s: groupsData[e.g][0], n: groupsData[e.g][1] - groupsData[e.g][0] + 1 } : { ...e, n: e.n || 1 };
 const info = x => `<small>${x.k} • ${x.who}${x.p ? ' • ' + x.p : ''}</small>`;
 
 function drawSched() {
   $$('#dayTabs button').forEach(b => b.classList.toggle('on', b.dataset.d === curDay));
   $('#daySel').value = curDay;
-  const es = schedule.filter(x => x.d === curDay).map(norm), w = $('#week');
+  const es = scheduleData.filter(x => x.d === curDay).map(norm), w = $('#week');
   const card = x => `<div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><time>الفترة ${ordn[x.per - 1]} • ${periods[x.per - 1]}</time><b>${x.t}</b>${info(x)}</div>`;
   const mineOf = n => es.filter(x => n >= x.s && n < x.s + x.n).sort((a, b) => a.per - b.per);
-  const gOf = n => Object.keys(groups).find(k => n >= groups[k][0] && n <= groups[k][1]);
+  const gOf = n => Object.keys(groupsData).find(k => n >= groupsData[k][0] && n <= groupsData[k][1]);
   const secs = curSec ? [curSec] : Array.from({ length: 10 }, (_, i) => i + 1);
   const occ = {};
   if (curSec) mineOf(curSec).forEach(x => occ[curSec + '-' + x.per] = x);
   else es.forEach(x => { occ[x.s + '-' + x.per] = x; for (let i = 1; i < x.n; i++) occ[(x.s + i) + '-' + x.per] = 'skip' });
+  
   let h = `<table class="tt${curSec ? ' one' : ''}"><thead><tr><th class="g">المجموعة</th><th class="n">السكشن</th>` + periods.map((t, i) => `<th>الفترة ${ordn[i]}<small>${t}</small></th>`).join('') + '</tr></thead><tbody>';
   secs.forEach(n => {
-    const g = gOf(n), first = curSec || n === groups[g][0];
-    h += `<tr${!curSec && first && n > 1 ? ' class="gs"' : ''}>` + (first ? `<th class="g" rowspan="${curSec ? 1 : groups[g][1] - groups[g][0] + 1}">${g}</th>` : '') + `<th class="n">سكشن ${n}</th>`;
+    const g = gOf(n), first = curSec || n === groupsData[g][0];
+    h += `<tr${!curSec && first && n > 1 ? ' class="gs"' : ''}>` + (first ? `<th class="g" rowspan="${curSec ? 1 : groupsData[g][1] - groupsData[g][0] + 1}">${g}</th>` : '') + `<th class="n">سكشن ${n}</th>`;
     for (let p = 1; p <= 5; p++) { const x = occ[n + '-' + p]; if (x === 'skip') continue; h += x ? `<td rowspan="${curSec ? 1 : x.n}"><div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><b>${x.t}</b>${info(x)}</div></td>` : '<td class="emp"></td>' }
     h += '</tr>';
   });
   let l = '';
-  (curSec ? [gOf(curSec)] : Object.keys(groups)).forEach(k => { l += `<div class="mg">${k}</div>`; secs.filter(n => gOf(n) === k).forEach(n => { const m = mineOf(n); l += `<div class="ms"><h5>سكشن ${n}</h5>${m.length ? m.map(card).join('') : '<p class="none">لا يوجد</p>'}</div>` }) });
+  (curSec ? [gOf(curSec)] : Object.keys(groupsData)).forEach(k => { l += `<div class="mg">${k}</div>`; secs.filter(n => gOf(n) === k).forEach(n => { const m = mineOf(n); l += `<div class="ms"><h5>سكشن ${n}</h5>${m.length ? m.map(card).join('') : '<p class="none">لا يوجد</p>'}</div>` }) });
   w.className = 'full';
   w.innerHTML = `<div class="swipe">${ico('arr')}اسحب لليمين لعرض باقي الجدول</div><div class="tw">${h}</tbody></table></div><div class="ml">${l}</div>`;
   swipeHint();
@@ -435,14 +499,14 @@ addEventListener('resize', swipeHint);
 function pickDay(d) { curDay = d; drawSched(); }
 function setSec(v) { curSec = +v; try { localStorage.setItem('sec', v) } catch(e) {} drawSched(); }
 
-$('#dayTabs').innerHTML = days.map(d => `<button data-d="${d}" class="${d === todayName ? 'today' : ''}" onclick="pickDay('${d}')">${d}</button>`).join('');
-$('#secSel').innerHTML = '<option value="0">كل السكاشن</option>' + Object.keys(groups).map(k => `<optgroup label="${k}">` + Array.from({ length: groups[k][1] - groups[k][0] + 1 }, (_, i) => `<option value="${groups[k][0] + i}">سكشن ${groups[k][0] + i} — ${k}</option>`).join('') + '</optgroup>').join('');
-$('#daySel').innerHTML = days.map(d => `<option value="${d}">${d}${d === todayName ? ' (اليوم)' : ''}</option>`).join('');
+$('#dayTabs').innerHTML = days.map(d => `<button data-d="${d}" class="${d === (["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"][new Date().getDay()]) ? 'today' : ''}" onclick="pickDay('${d}')">${d}</button>`).join('');
+$('#secSel').innerHTML = '<option value="0">كل السكاشن</option>' + Object.keys(groupsData).map(k => `<optgroup label="${k}">` + Array.from({ length: groupsData[k][1] - groupsData[k][0] + 1 }, (_, i) => `<option value="${groupsData[k][0] + i}">سكشن ${groupsData[k][0] + i} — ${k}</option>`).join('') + '</optgroup>').join('');
+$('#daySel').innerHTML = days.map(d => `<option value="${d}">${d}${d === (["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"][new Date().getDay()]) ? ' (اليوم)' : ''}</option>`).join('');
 $('#secSel').value = curSec;
-drawSched();
 
 // ========== المواد الدراسية ==========
 let subjectsData = [];
+const subjectsOrder = ["Data Structures", "Networks", "Logic Design", "Databases", "Operating Systems", "Operations Research"];
 
 function extractOrderNumber(filePath) {
   const fileName = decodeURIComponent(filePath.split('/').pop());
@@ -452,43 +516,30 @@ function extractOrderNumber(filePath) {
 
 function formatFiles(filesArray) {
   if (!Array.isArray(filesArray)) return [];
-  return filesArray
-    .filter(f => !f.includes('draft_'))
-    .map(f => {
-      let name = decodeURIComponent(f.split('/').pop());
-      name = name.replace(/\.[^/.]+$/, "").replace(/^\d+_/, "").replace(/_/g, " ");
-      return { t: name, l: encodeURI(f), order: extractOrderNumber(f) };
-    })
-    .sort((a, b) => a.order - b.order);
+  return filesArray.filter(f => !f.includes('draft_')).map(f => {
+    let name = decodeURIComponent(f.split('/').pop());
+    name = name.replace(/\.[^/.]+$/, "").replace(/^\d+_/, "").replace(/_/g, " ");
+    return { t: name, l: encodeURI(f), order: extractOrderNumber(f) };
+  }).sort((a, b) => a.order - b.order);
 }
 
 async function loadMaterials() {
   try {
     const res = await fetch('index.json?v=' + new Date().getTime());
     const data = await res.json();
-    
-    // إنشاء subjectsData مع الحفاظ على الترتيب الصحيح
     subjectsData = subjectsOrder.map(title => {
       const details = data[title];
       if (!details) return null;
-      
       return {
         id: title.replace(/\s+/g, '_').toLowerCase(),
         title: title,
         code: "الفرقة الثانية",
         desc: title,
-        doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({
-          name: "د. " + name,
-          items: formatFiles(files)
-        })),
-        tas: Object.entries(details.Sections || {}).map(([name, files]) => ({
-          name: "م. " + name,
-          items: formatFiles(files)
-        })),
+        doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({ name: "د. " + name, items: formatFiles(files) })),
+        tas: Object.entries(details.Sections || {}).map(([name, files]) => ({ name: "م. " + name, items: formatFiles(files) })),
         exams: formatFiles(details.Exams || [])
       };
-    }).filter(item => item !== null); // إزالة أي مواد غير موجودة
-    
+    }).filter(item => item !== null);
     renderSubjects();
   } catch (e) {
     $('#subGrid').innerHTML = '<div class="mid"><p>لم يتم رفع أي ملفات بعد أو جاري التحميل.</p></div>';
@@ -496,17 +547,11 @@ async function loadMaterials() {
 }
 
 function renderSubjects() {
-  if (subjectsData.length === 0) {
-    $('#subGrid').innerHTML = '<div class="mid"><p>لا توجد مواد مضافة حالياً.</p></div>';
-    return;
-  }
+  if (subjectsData.length === 0) { $('#subGrid').innerHTML = '<div class="mid"><p>لا توجد مواد مضافة حالياً.</p></div>'; return; }
   $('#subGrid').innerHTML = subjectsData.map(s => `<button class="card" onclick="openSub('${s.id}')"><span class="tag">${s.code}</span><h3>${s.title}</h3><p>${s.desc}</p><footer><span>${s.doctors.length} دكاترة</span><span>${s.tas.length} معيدين</span></footer></button>`).join('');
 }
 
-function subBack() {
-  $('#subList').classList.remove('hide'); $('#subDet').classList.add('hide');
-  renderSubjects();
-}
+function subBack() { $('#subList').classList.remove('hide'); $('#subDet').classList.add('hide'); renderSubjects(); }
 
 function pane(tabsEl, listEl, people) {
   const draw = i => {
@@ -524,10 +569,44 @@ function openSub(id) { go('subjects', id) }
 function renderSub(id) {
   const s = subjectsData.find(x => x.id === id);
   if (!s) return;
+  currentSubjectTitle = s.title;
   $('#sTitle').textContent = s.title; $('#sDesc').textContent = s.desc;
   $('#subList').classList.add('hide'); $('#subDet').classList.remove('hide');
   pane('#dTabs', '#dList', s.doctors); pane('#tTabs', '#tList', s.tas);
   scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ========== الفيديوهات (جديد) ==========
+let videosData = {};
+async function loadVideos() {
+  try {
+    const res = await fetch('videos.json?v=' + new Date().getTime());
+    videosData = await res.json();
+  } catch(e) { console.log('No videos.json found'); }
+}
+
+function openVideoModal(subject) {
+  const data = videosData[subject] || { Lectures: [], Sections: [] };
+  $('#vTitle').textContent = subject;
+  
+  const renderList = (items) => {
+    if (!items || items.length === 0) return '<p class="none" style="padding:10px 0">لا توجد تسجيلات مضافة بعد</p>';
+    return items.sort((a,b) => a.order - b.order).map(v => {
+      let btnClass = 'btn-other';
+      let icon = '🔗';
+      if (v.type === 'youtube') { btnClass = 'btn-youtube'; icon = '▶'; }
+      else if (v.type === 'drive') { btnClass = 'btn-drive'; icon = '📁'; }
+      
+      return `<div class="row">
+        <span>${v.title}</span>
+        <a href="${v.link}" target="_blank" class="btn sm ${btnClass}">${icon} فتح</a>
+      </div>`;
+    }).join('');
+  };
+  
+  $('#vLectures').innerHTML = renderList(data.Lectures);
+  $('#vSections').innerHTML = renderList(data.Sections);
+  $('#videoDlg').showModal();
 }
 
 // ========== الجروبات ==========
@@ -537,22 +616,10 @@ const platformStyles = {
   'فيسبوك': { color: '#1877F2', icon: 'users' }, 'facebook': { color: '#1877F2', icon: 'users' }
 };
 
-const subjectsOrder = [
-  "Data Structures",
-  "Networks",
-  "Logic Design",
-  "Databases",
-  "Operating Systems",
-  "Operations Research"
-];
-
 const staffCounts = {
-  "Data Structures": { doctors: 2, tas: 2 },
-  "Networks": { doctors: 2, tas: 2 },
-  "Logic Design": { doctors: 2, tas: 2 },
-  "Databases": { doctors: 2, tas: 3 },
-  "Operating Systems": { doctors: 1, tas: 3 },
-  "Operations Research": { doctors: 2, tas: 1 }
+  "Data Structures": { doctors: 2, tas: 2 }, "Networks": { doctors: 2, tas: 2 },
+  "Logic Design": { doctors: 2, tas: 2 }, "Databases": { doctors: 2, tas: 3 },
+  "Operating Systems": { doctors: 1, tas: 3 }, "Operations Research": { doctors: 2, tas: 1 }
 };
 
 async function loadGroups() {
@@ -568,10 +635,7 @@ async function loadGroups() {
 }
 
 function renderBatchGroups(groups) {
-  if (groups.length === 0) {
-    $('#batch-groups-container').innerHTML = '<p class="grp-row-empty">لا توجد جروبات للدفعة حالياً</p>';
-    return;
-  }
+  if (groups.length === 0) { $('#batch-groups-container').innerHTML = '<p class="grp-row-empty">لا توجد جروبات للدفعة حالياً</p>'; return; }
   groups.sort((a, b) => a.order - b.order);
   $('#batch-groups-container').innerHTML = groups.map(g => {
     const style = platformStyles[g.type] || { color: '#6c757d', icon: 'file' };
@@ -584,15 +648,7 @@ function renderSubjectGroups(subjects) {
     const data = subjects[title];
     if (!data) return '';
     const counts = staffCounts[title] || { doctors: 0, tas: 0 };
-    return `<button class="card" onclick="openGrp('${title}')">
-      <span class="tag">جروبات</span>
-      <h3>${title}</h3>
-      <p>الدكاترة والمعيدين</p>
-      <footer>
-        <span>${counts.doctors} دكاترة</span>
-        <span>${counts.tas} معيدين</span>
-      </footer>
-    </button>`;
+    return `<button class="card" onclick="openGrp('${title}')"><span class="tag">جروبات</span><h3>${title}</h3><p>الدكاترة والمعيدين</p><footer><span>${counts.doctors} دكاترة</span><span>${counts.tas} معيدين</span></footer></button>`;
   }).join('');
   $('#grpGrid').innerHTML = html || '<div class="mid"><p>لا توجد جروبات مضافة حالياً.</p></div>';
 }
@@ -624,18 +680,12 @@ function searchRes() {
   const q = $('#rq').value.trim().toLowerCase(); if (!q) return;
   $('#rOut').innerHTML = `<div class="panel mid"><b style="color:var(--ink)">جاري تجهيز نظام النتائج</b><p>سيتم ربط هذا القسم بملفات Google Sheets قريباً لعرض الدرجات التفصيلية.</p></div>`;
 }
-
 function lookup() {
   const q = $('#lq').value.trim().toLowerCase(); if (!q) return;
   $('#lOut').innerHTML = `<div class="panel mid"><b style="color:var(--ink)">جاري تجهيز نظام البحث</b><p>سيتم ربط هذا القسم بقاعدة بيانات الطلاب قريباً.</p></div>`;
 }
-
-// ========== الامتحانات ==========
 function exGrid() {
-  if (subjectsData.length === 0) {
-    $('#exGrid').innerHTML = '<div class="panel mid"><b style="color:var(--ink)">غير متوفرة حاليًا</b><p>تتوفر امتحانات الأعوام السابقة قبل الامتحانات بأسبوعين.</p></div>';
-    return;
-  }
+  if (subjectsData.length === 0) { $('#exGrid').innerHTML = '<div class="panel mid"><b style="color:var(--ink)">غير متوفرة حاليًا</b><p>تتوفر امتحانات الأعوام السابقة قبل الامتحانات بأسبوعين.</p></div>'; return; }
   $('#exGrid').className = 'grid2';
   $('#exGrid').innerHTML = subjectsData.map(s => `<div class="panel"><span class="tag">${s.code}</span><h3 style="margin:6px 0 4px">${s.title}</h3>${s.exams.length ? s.exams.map(e => `<div class="row"><span>${e.t}</span><a class="btn ghost sm" href="${e.l}" target="_blank" rel="noopener">تحميل</a></div>`).join('') : '<p style="color:var(--mut);padding:10px 0">لم تُرفع امتحانات بعد</p>'}</div>`).join('');
 }
@@ -643,11 +693,7 @@ function exGrid() {
 // ========== طلب البيانات ==========
 function sendReq(e) {
   e.preventDefault();
-  const name = $('#rn').value.trim();
-  const phone = $('#rp').value.trim();
-  const req = $('#rt').value;
-  const notes = $('#rm').value.trim() || '-';
-  const msg = `مرحباً م/ عمرو السيد،\nطلب بياناتي جامعية.\n- الاسم بالكامل: ${name}\n- رقم الواتساب: ${phone}\n- المطلوب: ${req}\n- ملاحظات: ${notes}`;
+  const msg = `مرحباً م/ عمرو السيد،\nطلب بياناتي جامعية.\n- الاسم بالكامل: ${$('#rn').value.trim()}\n- رقم الواتساب: ${$('#rp').value.trim()}\n- المطلوب: ${$('#rt').value}\n- ملاحظات: ${$('#rm').value.trim() || '-'}`;
   open(wa(msg), '_blank');
 }
 
@@ -660,8 +706,10 @@ $$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin
 }
 
 // ========== تحميل كل البيانات ==========
+loadSchedule();
 loadMaterials();
 loadGroups();
+loadVideos();
 </script>
 </body>
 </html>
