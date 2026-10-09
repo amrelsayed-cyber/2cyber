@@ -501,21 +501,37 @@ function drawSched() {
   if (curSec) mineOf(curSec).forEach(x => occ[curSec + '-' + x.per] = x);
   else es.forEach(x => { occ[x.s + '-' + x.per] = x; for (let i = 1; i < x.n; i++) occ[(x.s + i) + '-' + x.per] = 'skip' });
   
+  // متغير لتتبع الخلايا المغطاة بـ rowspan (يمنع التداخل)
+  const covered = {};
+  
   let h = `<table class="tt${curSec ? ' one' : ''}"><thead><tr><th class="g">المجموعة</th><th class="n">السكشن</th>` + periods.map((t, i) => `<th>الفترة ${ordn[i]}<small>${t}</small></th>`).join('') + '</tr></thead><tbody>';
   secs.forEach(n => {
     const g = gOf(n), first = curSec || n === groupsData[g][0];
     h += `<tr${!curSec && first && n > 1 ? ' class="gs"' : ''}>` + (first ? `<th class="g" rowspan="${curSec ? 1 : groupsData[g][1] - groupsData[g][0] + 1}">${g}</th>` : '') + `<th class="n">سكشن ${n}</th>`;
     
-    // === إصلاح الخطأ هنا ===
     for (let p = 1; p <= 5; p++) { 
-      const x = occ[n + '-' + p]; 
+      const key = n + '-' + p;
+      
+      // إذا كانت الخانة مغطاة بـ rowspan من سكشن سابق، تخطاها
+      if (covered[key]) continue;
+      
+      const x = occ[key]; 
       if (x === 'skip') continue; 
       if (!x) {
         h += '<td class="emp"></td>';
         continue;
       }
+      
       const isLecture = x.k === 'محاضرة';
       const rowspan = curSec ? 1 : (isLecture ? (groupsData[g][1] - groupsData[g][0] + 1) : 1);
+      
+      // إذا كانت محاضرة، غطِ الخلايا في السكاشن الأخرى لنفس المجموعة
+      if (isLecture && !curSec) {
+        for (let sn = groupsData[g][0]; sn <= groupsData[g][1]; sn++) {
+          if (sn !== n) covered[sn + '-' + p] = true;
+        }
+      }
+      
       h += `<td rowspan="${rowspan}"><div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><b>${x.t}</b>${info(x)}</div></td>`;
     }
     h += '</tr>';
