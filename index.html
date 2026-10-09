@@ -209,14 +209,12 @@ dialog{margin:auto}
 .grp-row-empty { color: var(--mut); font-size: 13px; font-style: italic; padding: 12px 0; text-align: center; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* ===== أنماط أزرار الفيديوهات ===== */
 .btn-youtube { background-color: #FF0000 !important; color: white !important; }
 .btn-youtube:hover { background-color: #cc0000 !important; }
 .btn-drive { background-color: #1A73E8 !important; color: white !important; }
 .btn-drive:hover { background-color: #1557b0 !important; }
 .btn-other { background-color: var(--mut) !important; color: white !important; }
 
-/* زر فيديوهات ومصادر */
 .btn-videos {
   background-color: #7C3AED !important;
   color: white !important;
@@ -253,7 +251,6 @@ dialog{margin:auto}
 <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
 <symbol id="arr" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
 <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol>
-<symbol id="video" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
 <symbol id="play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></symbol>
 </defs></svg>
 
@@ -270,7 +267,6 @@ dialog{margin:auto}
 
 <main><div class="wrap">
 
-<!-- HOME -->
 <section id="home" class="view on">
   <div class="greet"><h1>أهلاً بك في Cyber's</h1><p>جدولك وموادك وجروباتك في مكان واحد.</p></div>
   <div class="svcs" id="svcs"></div>
@@ -281,14 +277,12 @@ dialog{margin:auto}
   </div>
 </section>
 
-<!-- RESULTS -->
 <section id="results" class="view">
   <div class="vh"><h2>نتائج الامتحانات</h2><p>اكتب اسمك أو الكود الجامعي لعرض درجاتك مع تفاصيل الدكتور والمعيد.</p></div>
   <div class="qrow" style="max-width:560px"><input id="rq" placeholder="الاسم أو الكود الجامعي" onkeydown="if(event.key=='Enter')searchRes()"><button class="btn" onclick="searchRes()">عرض النتائج</button></div>
   <div id="rOut"></div>
 </section>
 
-<!-- SUBJECTS -->
 <section id="subjects" class="view">
   <div id="subList">
     <div class="vh"><h2>المواد الدراسية</h2><p>اختر المادة لعرض المحاضرات حسب الدكتور والسكاشن حسب المعيد.</p></div>
@@ -328,7 +322,6 @@ dialog{margin:auto}
   </div>
 </section>
 
-<!-- GROUPS -->
 <section id="groups" class="view">
   <div class="vh"><h2>الجروبات الرسمية</h2><p>جروبات الدفعة، وجروبات كل مادة مع دكاترتها ومعيديها.</p></div>
   <div class="panel" style="margin-bottom:28px">
@@ -339,13 +332,11 @@ dialog{margin:auto}
   <div class="cards" id="grpGrid"><div class="mid"><p>جاري تحميل الجروبات...</p></div></div>
 </section>
 
-<!-- EXAMS -->
 <section id="exams" class="view">
   <div class="vh"><h2>امتحانات الأعوام السابقة</h2><p>نماذج الميدتيرم والفاينال وحلول الشيتات لكل مادة.</p></div>
   <div class="grid2" id="exGrid"></div>
 </section>
 
-<!-- LOOKUP -->
 <section id="lookup" class="view">
   <div class="vh"><h2>معرفة السكشن والمجموعة</h2><p>اكتب اسمك أو الكود الجامعي لمعرفة سكشنك ومجموعتك.</p></div>
   <div class="panel narrow">
@@ -354,7 +345,6 @@ dialog{margin:auto}
   </div>
 </section>
 
-<!-- REQUEST -->
 <section id="request" class="view">
   <div class="vh"><h2>طلب البيانات الجامعية</h2><p>اختر المطلوب وسيصل طلبك إلى الليدر على الواتساب.</p></div>
   <div class="note"><b>لماذا الطلب عن طريق الليدر؟</b><br>البيانات الجامعية لا يصح لأي أحد الاطلاع عليها، لذلك أرسل رسالة لليدر وسيتم التواصل معك في أقرب وقت. اكتب اسمك بالكامل ورقم موبايلك (لأن واتساب يخفي الرقم إذا كنت تستخدم اليوزر) والمطلوب.</div>
@@ -367,7 +357,6 @@ dialog{margin:auto}
   </form>
 </section>
 
-<!-- LEADER -->
 <section id="leader" class="view">
   <div class="panel narrow mid" style="color:var(--ink)">
     <div class="brand" style="justify-content:center;margin-bottom:12px"><span class="logo" style="width:64px;height:64px;border-radius:50%"><svg class="i" style="width:30px;height:30px"><use href="#shield"/></svg></span></div>
@@ -380,14 +369,12 @@ dialog{margin:auto}
 
 </div></main>
 
-<!-- Modal الجروبات -->
 <dialog id="dlg"><div>
   <div style="display:flex;justify-content:space-between;align-items:flex-start"><div><span class="tag" id="dCode"></span><h3 id="dTitle" style="font-size:19px;margin-top:6px"></h3></div><button class="btn ghost sm" onclick="dlg.close()">إغلاق</button></div>
   <h4>جروبات الدكاترة</h4><div id="dDocs"></div>
   <h4>جروبات المعيدين</h4><div id="dTas"></div>
 </div></dialog>
 
-<!-- Modal الفيديوهات -->
 <dialog id="videoDlg"><div>
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
     <div>
@@ -396,12 +383,10 @@ dialog{margin:auto}
     </div>
     <button class="btn ghost sm" onclick="videoDlg.close()">إغلاق</button>
   </div>
-  
   <div id="lecturesSection">
     <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
     <div id="vLectures" style="margin-bottom:24px"></div>
   </div>
-  
   <div id="sectionsSection">
     <h4 style="color:var(--ac);margin-bottom:12px">📝 السكاشن</h4>
     <div id="vSections"></div>
@@ -412,7 +397,6 @@ dialog{margin:auto}
 <footer class="f">Cyber's • CyberSecurity • BY. Amr Elsayed © 2026</footer>
 
 <script>
-// ========== الإعدادات ==========
 const WA = "201125509568";
 const LEADER_MSG = `مرحباً م/ عمرو السيد،\nطلب بياناتي جامعية.\n- الاسم بالكامل: \n- رقم الواتساب: \n- المطلوب: (الإيميل والباسورد / الكود الجامعي / اخرى "مع كتابة المطلوب")\n- ملاحظات: `;
 
@@ -426,7 +410,6 @@ $('#waLead').href = wa(LEADER_MSG);
 let currentSubjectTitle = "";
 let videosData = {};
 
-// ========== التنقل ==========
 const navItems = [['home','home','الرئيسية'],['subjects','book','المواد'],['groups','users','الجروبات'],['request','mail','البيانات الجامعية']];
 $('#nav').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${n[2]}</button>`).join('');
 $('#tabbar').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${ico(n[1])}${n[2]}</button>`).join('');
@@ -436,7 +419,6 @@ function show(id, sub) {
   const d = $('#dlg'), vd = $('#videoDlg'); 
   if (d && d.open) d.close();
   if (vd && vd.open) vd.close();
-  
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id));
   $$('#nav button, #tabbar button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
   if (id === 'subjects') sub ? renderSub(sub) : subBack();
@@ -453,7 +435,6 @@ function go(id, sub) {
 function back() { const st = history.state; if (st && st.n > 0) history.back(); else go('home') }
 addEventListener('popstate', e => { const st = e.state || { v: 'home', sub: null }; show(st.v, st.sub) });
 
-// ========== خدمات الصفحة الرئيسية ==========
 const services = [
   ["subjects", "book", "المواد والمحاضرات", "المحاضرات حسب الدكتور، والسكاشن حسب المعيد."],
   ["groups", "users", "الجروبات الرسمية", "جروبات الدفعة وجروبات كل مادة بدكاترتها ومعيديها."],
@@ -464,7 +445,7 @@ const services = [
 ];
 $('#svcs').innerHTML = services.map(s => `<button class="svc" onclick="go('${s[0]}')"><span class="ic">${ico(s[1])}</span><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div></button>`).join('');
 
-// ========== الجدول الدراسي (ديناميكي من schedule.json) ==========
+// ========== الجدول الدراسي ==========
 let days = [], periods = [], ordn = ["الأولى","الثانية","الثالثة","الرابعة","الخامسة"], groupsData = {}, scheduleData = [];
 let curDay = '', curSec = 0;
 try { curSec = +localStorage.getItem('sec') || 0 } catch(e) {}
@@ -473,6 +454,7 @@ if (curSec < 0 || curSec > 10) curSec = 0;
 async function loadSchedule() {
   try {
     const res = await fetch('schedule.json?v=' + new Date().getTime());
+    if (!res.ok) throw new Error('File not found');
     const data = await res.json();
     days = data.days || [];
     periods = data.periods || [];
@@ -499,6 +481,7 @@ async function loadSchedule() {
     
     drawSched();
   } catch(e) {
+    console.error('Schedule load error:', e);
     $('#week').innerHTML = '<div class="none">لم يتم تحميل الجدول بعد. تأكد من وجود ملف schedule.json.</div>';
   }
 }
@@ -575,6 +558,7 @@ function formatFiles(filesArray) {
 async function loadMaterials() {
   try {
     const res = await fetch('index.json?v=' + new Date().getTime());
+    if (!res.ok) throw new Error('File not found');
     const data = await res.json();
     subjectsData = subjectsOrder.map(title => {
       const details = data[title];
@@ -591,6 +575,7 @@ async function loadMaterials() {
     }).filter(item => item !== null);
     renderSubjects();
   } catch (e) {
+    console.error('Materials load error:', e);
     $('#subGrid').innerHTML = '<div class="mid"><p>لم يتم رفع أي ملفات بعد أو جاري التحميل.</p></div>';
   }
 }
@@ -629,6 +614,7 @@ function renderSub(id) {
 async function loadVideos() {
   try {
     const res = await fetch('videos.json?v=' + new Date().getTime());
+    if (!res.ok) throw new Error('File not found');
     videosData = await res.json();
   } catch(e) { console.log('No videos.json found'); }
 }
@@ -643,7 +629,7 @@ function openVideoModal(subject, section) {
       let btnClass = 'btn-other';
       let icon = '🔗';
       if (v.type === 'youtube') { btnClass = 'btn-youtube'; icon = '▶'; }
-      else if (v.type === 'drive') { btnClass = 'btn-drive'; icon = '📁'; }
+      else if (v.type === 'drive') { btnClass = 'btn-drive'; icon = ''; }
       
       return `<div class="row">
         <span>${v.title}</span>
@@ -680,10 +666,12 @@ const staffCounts = {
 async function loadGroups() {
   try {
     const res = await fetch('groups.json?v=' + new Date().getTime());
+    if (!res.ok) throw new Error('File not found');
     const data = await res.json();
     renderBatchGroups(data.batch_groups || []);
     renderSubjectGroups(data.subjects || {});
   } catch (e) {
+    console.error('Groups load error:', e);
     $('#batch-groups-container').innerHTML = '<p class="grp-row-empty">جاري التحميل...</p>';
     $('#grpGrid').innerHTML = '<div class="mid"><p>جاري التحميل...</p></div>';
   }
@@ -730,7 +718,6 @@ function openGrp(title) {
   });
 }
 
-// ========== النتائج والبحث ==========
 function searchRes() {
   const q = $('#rq').value.trim().toLowerCase(); if (!q) return;
   $('#rOut').innerHTML = `<div class="panel mid"><b style="color:var(--ink)">جاري تجهيز نظام النتائج</b><p>سيتم ربط هذا القسم بملفات Google Sheets قريباً لعرض الدرجات التفصيلية.</p></div>`;
@@ -745,14 +732,12 @@ function exGrid() {
   $('#exGrid').innerHTML = subjectsData.map(s => `<div class="panel"><span class="tag">${s.code}</span><h3 style="margin:6px 0 4px">${s.title}</h3>${s.exams.length ? s.exams.map(e => `<div class="row"><span>${e.t}</span><a class="btn ghost sm" href="${e.l}" target="_blank" rel="noopener">تحميل</a></div>`).join('') : '<p style="color:var(--mut);padding:10px 0">لم تُرفع امتحانات بعد</p>'}</div>`).join('');
 }
 
-// ========== طلب البيانات ==========
 function sendReq(e) {
   e.preventDefault();
   const msg = `مرحباً م/ عمرو السيد،\nطلب بياناتي جامعية.\n- الاسم بالكامل: ${$('#rn').value.trim()}\n- رقم الواتساب: ${$('#rp').value.trim()}\n- المطلوب: ${$('#rt').value}\n- ملاحظات: ${$('#rm').value.trim() || '-'}`;
   open(wa(msg), '_blank');
 }
 
-// ========== Back buttons + initial route ==========
 $$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin', `<button class="back" onclick="back()">${ico('arr')}رجوع</button>`) });
 {
   const h = location.hash.slice(1).split('/'), e = document.getElementById(h[0]), f = e && e.classList.contains('view') ? h[0] : 'home';
@@ -760,7 +745,6 @@ $$('.view').forEach(v => { if (v.id !== 'home') v.insertAdjacentHTML('afterbegin
   show(f, h[1] || null);
 }
 
-// ========== تحميل كل البيانات ==========
 loadSchedule();
 loadMaterials();
 loadGroups();
