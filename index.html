@@ -237,6 +237,9 @@ dialog{margin:auto}
   fill: white;
   stroke: none;
 }
+.btn-videos.hidden {
+  display: none !important;
+}
 </style>
 </head>
 <body>
@@ -297,7 +300,7 @@ dialog{margin:auto}
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h3 style="margin:0">المحاضرات</h3>
-          <button class="btn-videos" onclick="openVideoModal(currentSubjectTitle, 'Lectures')">
+          <button class="btn-videos" id="btnLecturesVideos" onclick="openVideoModal(currentSubjectTitle, 'Lectures')">
             <svg><use href="#play"/></svg>
             فيديوهات ومصادر
           </button>
@@ -309,7 +312,7 @@ dialog{margin:auto}
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h3 style="margin:0">السكاشن</h3>
-          <button class="btn-videos" onclick="openVideoModal(currentSubjectTitle, 'Sections')">
+          <button class="btn-videos" id="btnSectionsVideos" onclick="openVideoModal(currentSubjectTitle, 'Sections')">
             <svg><use href="#play"/></svg>
             فيديوهات ومصادر
           </button>
@@ -384,7 +387,7 @@ dialog{margin:auto}
     <button class="btn ghost sm" onclick="videoDlg.close()">إغلاق</button>
   </div>
   <div id="lecturesSection">
-    <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
+    <h4 style="color:var(--ac);margin-bottom:12px"> المحاضرات</h4>
     <div id="vLectures" style="margin-bottom:24px"></div>
   </div>
   <div id="sectionsSection">
@@ -409,6 +412,7 @@ $('#waLead').href = wa(LEADER_MSG);
 
 let currentSubjectTitle = "";
 let videosData = {};
+let videosLoaded = false;
 
 const navItems = [['home','home','الرئيسية'],['subjects','book','المواد'],['groups','users','الجروبات'],['request','mail','البيانات الجامعية']];
 $('#nav').innerHTML = navItems.map(n => `<button data-v="${n[0]}" onclick="go('${n[0]}')">${n[2]}</button>`).join('');
@@ -622,6 +626,28 @@ function pane(tabsEl, listEl, people) {
 }
 
 function openSub(id) { go('subjects', id) }
+
+function updateVideoButtonsVisibility() {
+  if (!currentSubjectTitle || !videosLoaded) return;
+  
+  const data = videosData[currentSubjectTitle] || { Lectures: [], Sections: [] };
+  const hasLectures = data.Lectures && data.Lectures.length > 0;
+  const hasSections = data.Sections && data.Sections.length > 0;
+  
+  const btnLectures = $('#btnLecturesVideos');
+  const btnSections = $('#btnSectionsVideos');
+  
+  if (btnLectures) {
+    if (hasLectures) btnLectures.classList.remove('hidden');
+    else btnLectures.classList.add('hidden');
+  }
+  
+  if (btnSections) {
+    if (hasSections) btnSections.classList.remove('hidden');
+    else btnSections.classList.add('hidden');
+  }
+}
+
 function renderSub(id) {
   const s = subjectsData.find(x => x.id === id);
   if (!s) return;
@@ -629,6 +655,7 @@ function renderSub(id) {
   $('#sTitle').textContent = s.title; $('#sDesc').textContent = s.desc;
   $('#subList').classList.add('hide'); $('#subDet').classList.remove('hide');
   pane('#dTabs', '#dList', s.doctors); pane('#tTabs', '#tList', s.tas);
+  updateVideoButtonsVisibility();
   scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -638,7 +665,12 @@ async function loadVideos() {
     const res = await fetch('videos.json?v=' + new Date().getTime());
     if (!res.ok) throw new Error('File not found');
     videosData = await res.json();
-  } catch(e) { console.log('No videos.json found'); }
+    videosLoaded = true;
+    if (currentSubjectTitle) updateVideoButtonsVisibility();
+  } catch(e) { 
+    console.log('No videos.json found');
+    videosLoaded = true;
+  }
 }
 
 function openVideoModal(subject, section) {
@@ -651,7 +683,7 @@ function openVideoModal(subject, section) {
       let btnClass = 'btn-other';
       let icon = '🔗';
       if (v.type === 'youtube') { btnClass = 'btn-youtube'; icon = '▶'; }
-      else if (v.type === 'drive') { btnClass = 'btn-drive'; icon = ''; }
+      else if (v.type === 'drive') { btnClass = 'btn-drive'; icon = '📁'; }
       
       return `<div class="row">
         <span>${v.title}</span>
