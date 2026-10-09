@@ -1,35 +1,62 @@
 {
   "Data Structures": {
     "Lectures": [
-      { "title": "قائمة تشغيل المحاضرات الرسمية", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOaq0m6aO9NYkNbKSF-Vy6bfx&si=0dRQGTTUQAKrul8Y", "type": "youtube", "order": 1 },
+      { "title": "قائمة تشغيل المحاضرات الرسمية - د. محمود النامولي", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOaq0m6aO9NYkNbKSF-Vy6bfx&si=0dRQGTTUQAKrul8Y", "type": "youtube", "order": 1 },
+      { "title": "محاضرات د. ليلى عبد الفتاح", "link": "", "type": "youtube", "order": 2, "hidden": true }
     ],
     "Sections": [
-      { "title": "", "link": "", "type": "", "order":  },
-      { "title": "", "link": "", "type": "", "order":  }
+      { "title": "سكاشن م/ عمرو عبدالعال", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "سكاشن م/ شادي أشرف", "link": "", "type": "youtube", "order": 2, "hidden": true }
     ]
   },
   "Networks": {
     "Lectures": [
-      { "title": "", "link": "", "type": "", "order":  }
+      { "title": "محاضرات د. إيهاب رشدي", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "محاضرات د. ولاء الهادي", "link": "", "type": "youtube", "order": 2, "hidden": true }
     ],
     "Sections": [
-      { "title": "فيديو رقم 9 تاسك", "link": "https://drive.google.com/file/d/1UOaX2RTdrw2UHjd-YTDod3YC121RSAjH/view", "type": "drive", "order": 1 }
+      { "title": "فيديو رقم 9 تاسك - م/ أحمد عوض", "link": "https://drive.google.com/file/d/1UOaX2RTdrw2UHjd-YTDod3YC121RSAjH/view", "type": "drive", "order": 1 },
+      { "title": "سكاشن م/ هانيا وائل", "link": "", "type": "youtube", "order": 2, "hidden": true }
     ]
   },
   "Logic Design": {
-    "Lectures": [],
-    "Sections": []
+    "Lectures": [
+      { "title": "محاضرات د. أسماء محمد", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "محاضرات د. أحمد داوود", "link": "", "type": "youtube", "order": 2, "hidden": true }
+    ],
+    "Sections": [
+      { "title": "سكاشن م/ إيمان رضا", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "سكاشن م/ رحمة عبدالكريم", "link": "", "type": "youtube", "order": 2, "hidden": true }
+    ]
   },
   "Databases": {
-    "Lectures": [],
-    "Sections": []
+    "Lectures": [
+      { "title": "محاضرات د. محمد ماهر", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "محاضرات د. أحمد سامي", "link": "", "type": "youtube", "order": 2, "hidden": true }
+    ],
+    "Sections": [
+      { "title": "سكاشن م/ حسن حسن", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "سكاشن م/ عاصم مصطفى", "link": "", "type": "youtube", "order": 2, "hidden": true },
+      { "title": "سكاشن م/ شوقي السيد", "link": "", "type": "youtube", "order": 3, "hidden": true }
+    ]
   },
   "Operating Systems": {
-    "Lectures": [],
-    "Sections": []
+    "Lectures": [
+      { "title": "محاضرات د. مروة عبدالإله", "link": "", "type": "youtube", "order": 1, "hidden": true }
+    ],
+    "Sections": [
+      { "title": "سكاشن م/ روان طارق", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "سكاشن م/ شروق أسامة", "link": "", "type": "youtube", "order": 2, "hidden": true },
+      { "title": "سكاشن م/ شادي أشرف", "link": "", "type": "youtube", "order": 3, "hidden": true }
+    ]
   },
   "Operations Research": {
-    "Lectures": [],
-    "Sections": []
+    "Lectures": [
+      { "title": "محاضرات د. شيرين زكي", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "محاضرات د. محمود إسماعيل", "link": "", "type": "youtube", "order": 2, "hidden": true }
+    ],
+    "Sections": [
+      { "title": "سكاشن م/ محمد جمال", "link": "", "type": "youtube", "order": 1, "hidden": true }
+    ]
   }
 }
