@@ -240,6 +240,57 @@ dialog{margin:auto}
 .btn-videos.hidden {
   display: none !important;
 }
+
+/* ===== تحسين أزرار فتح الفيديوهات داخل النافذة ===== */
+#videoDlg .btn.sm {
+  padding: 6px 14px;
+  font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#videoDlg .row {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#videoDlg .row span {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* على الموبايل */
+@media (max-width: 640px) {
+  #videoDlg .btn.sm {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+  
+  #videoDlg .row {
+    gap: 8px;
+    padding: 10px 0;
+  }
+  
+  #videoDlg .row span {
+    font-size: 12px;
+    flex-basis: calc(100% - 70px);
+  }
+}
+
+/* على الشاشات الصغيرة جداً */
+@media (max-width: 380px) {
+  #videoDlg .btn.sm {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  
+  #videoDlg .row span {
+    font-size: 11px;
+  }
+}
+
 </style>
 </head>
 <body>
