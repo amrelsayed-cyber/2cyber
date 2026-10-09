@@ -628,27 +628,14 @@ function pane(tabsEl, listEl, people) {
 function openSub(id) { go('subjects', id) }
 
 // ========== التحكم في ظهور أزرار الفيديوهات ==========
+// ========== التحكم في ظهور أزرار الفيديوهات ==========
 function updateVideoButtonsVisibility() {
-  if (!currentSubjectTitle || !videosLoaded) return;
-  
-  const data = videosData[currentSubjectTitle] || { Lectures: [], Sections: [] };
-  
-  // إخفاء الزر إذا: المصفوفة فارغة OR يوجد عنصر فيه hidden: true
-  const hideLectures = !data.Lectures || data.Lectures.length === 0 || data.Lectures.some(v => v.hidden === true);
-  const hideSections = !data.Sections || data.Sections.length === 0 || data.Sections.some(v => v.hidden === true);
-  
+  // نجعل الأزرار ظاهرة دائماً ولا نخفيها بناءً على المحتوى
   const btnLectures = $('#btnLecturesVideos');
   const btnSections = $('#btnSectionsVideos');
   
-  if (btnLectures) {
-    if (hideLectures) btnLectures.classList.add('hidden');
-    else btnLectures.classList.remove('hidden');
-  }
-  
-  if (btnSections) {
-    if (hideSections) btnSections.classList.add('hidden');
-    else btnSections.classList.remove('hidden');
-  }
+  if (btnLectures) btnLectures.classList.remove('hidden');
+  if (btnSections) btnSections.classList.remove('hidden');
 }
 
 function renderSub(id) {
@@ -681,8 +668,20 @@ function openVideoModal(subject, section) {
   $('#vTitle').textContent = subject + (section === 'Lectures' ? ' - المحاضرات' : ' - السكاشن');
   
   const renderList = (items) => {
-    if (!items || items.length === 0) return '<p class="none" style="padding:10px 0">لا توجد تسجيلات مضافة بعد</p>';
-    return items.sort((a,b) => a.order - b.order).map(v => {
+    if (!items || items.length === 0) {
+      return '<p class="none" style="padding:10px 0; text-align:center;">لا توجد تسجيلات مضافة بعد</p>';
+    }
+    
+    // تصفية العناصر: نستبعد أي عنصر يحتوي على hidden: true
+    const visibleItems = items.filter(v => v.hidden !== true);
+    
+    // إذا لم يتبقَ أي عنصر بعد التصفية، نعرض رسالة مناسبة
+    if (visibleItems.length === 0) {
+      return '<p class="none" style="padding:10px 0; text-align:center;">لا يوجد محتوى متاح حالياً لهذه الفئة</p>';
+    }
+
+    // عرض العناصر الظاهرة فقط
+    return visibleItems.sort((a, b) => a.order - b.order).map(v => {
       let btnClass = 'btn-other';
       let icon = '🔗';
       if (v.type === 'youtube') { btnClass = 'btn-youtube'; icon = '▶'; }
