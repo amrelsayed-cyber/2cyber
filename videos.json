@@ -1,0 +1,36 @@
+{
+  "Data Structures": {
+    "Lectures": [
+      { "title": "قائمة تشغيل المحاضرات الرسمية", "link": "https://www.youtube.com/playlist?list=EXAMPLE1", "type": "youtube", "order": 1 },
+      { "title": "مجلد تسجيلات المحاضرات على درايف", "link": "https://drive.google.com/drive/folders/EXAMPLE1", "type": "drive", "order": 2 }
+    ],
+    "Sections": [
+      { "title": "سكاشن م/ عمرو عبدالعال", "link": "https://www.youtube.com/playlist?list=EXAMPLE2", "type": "youtube", "order": 1 },
+      { "title": "سكاشن م/ شادي اشرف", "link": "https://drive.google.com/drive/folders/EXAMPLE2", "type": "drive", "order": 2 }
+    ]
+  },
+  "Networks": {
+    "Lectures": [
+      { "title": "محاضرات د. إيهاب رشدي", "link": "https://www.youtube.com/playlist?list=EXAMPLE3", "type": "youtube", "order": 1 }
+    ],
+    "Sections": [
+      { "title": "سكاشن م. أحمد عوض", "link": "https://www.youtube.com/playlist?list=EXAMPLE4", "type": "youtube", "order": 1 }
+    ]
+  },
+  "Logic Design": {
+    "Lectures": [],
+    "Sections": []
+  },
+  "Databases": {
+    "Lectures": [],
+    "Sections": []
+  },
+  "Operating Systems": {
+    "Lectures": [],
+    "Sections": []
+  },
+  "Operations Research": {
+    "Lectures": [],
+    "Sections": []
+  }
+}
