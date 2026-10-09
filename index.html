@@ -103,7 +103,6 @@ footer.f{border-top:1px solid var(--line);background:#fff;padding:20px 0;text-al
 @media(max-width:780px){.hero,.grid2{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}.brand small{display:none}main{padding-top:20px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* ===== الجدول الدراسي ===== */
 .sched{padding:28px;margin-bottom:20px;box-shadow:0 12px 32px -18px rgba(15,32,56,.18)}
 .sched-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
 .sched-h h2{font-size:24px;font-weight:700}
@@ -216,6 +215,30 @@ dialog{margin:auto}
 .btn-drive { background-color: #1A73E8 !important; color: white !important; }
 .btn-drive:hover { background-color: #1557b0 !important; }
 .btn-other { background-color: var(--mut) !important; color: white !important; }
+
+/* زر فيديوهات ومصادر */
+.btn-videos {
+  background-color: #7C3AED !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-videos:hover {
+  background-color: #6D28D9 !important;
+  transform: translateY(-1px);
+}
+.btn-videos svg {
+  width: 14px;
+  height: 14px;
+  fill: white;
+  stroke: none;
+}
 </style>
 </head>
 <body>
@@ -231,6 +254,7 @@ dialog{margin:auto}
 <symbol id="arr" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
 <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol>
 <symbol id="video" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
+<symbol id="play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor" stroke="none"/></symbol>
 </defs></svg>
 
 <header><div class="wrap">
@@ -272,24 +296,16 @@ dialog{margin:auto}
   </div>
   <div id="subDet" class="hide">
     <div class="vh">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-        <div>
-          <h2 id="sTitle" style="margin-bottom:4px"></h2>
-          <p id="sDesc" style="margin:0"></p>
-        </div>
-        <button class="btn" style="background:#FF0000;color:white" onclick="openVideoModal(currentSubjectTitle)">
-          <svg class="i" style="width:18px;height:18px;fill:white;stroke:none;margin-left:6px"><use href="#video"/></svg>
-          فيديوهات وتسجيلات
-        </button>
-      </div>
+      <h2 id="sTitle"></h2>
+      <p id="sDesc"></p>
     </div>
     <div class="grid2">
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h3 style="margin:0">المحاضرات</h3>
-          <button class="btn sm" style="background:#FF0000;color:white" onclick="openVideoModal(currentSubjectTitle, 'Lectures')">
-            <svg class="i" style="width:16px;height:16px;fill:white;stroke:none;margin-left:4px"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            فيديوهات المحاضرات
+          <button class="btn-videos" onclick="openVideoModal(currentSubjectTitle, 'Lectures')">
+            <svg><use href="#play"/></svg>
+            فيديوهات ومصادر
           </button>
         </div>
         <small>حسب الدكتور</small>
@@ -299,9 +315,9 @@ dialog{margin:auto}
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h3 style="margin:0">السكاشن</h3>
-          <button class="btn sm" style="background:#1A73E8;color:white" onclick="openVideoModal(currentSubjectTitle, 'Sections')">
-            <svg class="i" style="width:16px;height:16px;fill:white;stroke:none;margin-left:4px"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            فيديوهات السكاشن
+          <button class="btn-videos" onclick="openVideoModal(currentSubjectTitle, 'Sections')">
+            <svg><use href="#play"/></svg>
+            فيديوهات ومصادر
           </button>
         </div>
         <small>حسب المعيد</small>
@@ -371,7 +387,7 @@ dialog{margin:auto}
   <h4>جروبات المعيدين</h4><div id="dTas"></div>
 </div></dialog>
 
-<!-- Modal الفيديوهات (جديد) -->
+<!-- Modal الفيديوهات -->
 <dialog id="videoDlg"><div>
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
     <div>
@@ -387,7 +403,7 @@ dialog{margin:auto}
   </div>
   
   <div id="sectionsSection">
-    <h4 style="color:var(--ac);margin-bottom:12px"> السكاشن</h4>
+    <h4 style="color:var(--ac);margin-bottom:12px">📝 السكاشن</h4>
     <div id="vSections"></div>
   </div>
 </div></dialog>
@@ -408,6 +424,7 @@ $('#waTop').href = wa(LEADER_MSG);
 $('#waLead').href = wa(LEADER_MSG);
 
 let currentSubjectTitle = "";
+let videosData = {};
 
 // ========== التنقل ==========
 const navItems = [['home','home','الرئيسية'],['subjects','book','المواد'],['groups','users','الجروبات'],['request','mail','البيانات الجامعية']];
@@ -505,7 +522,13 @@ function drawSched() {
   secs.forEach(n => {
     const g = gOf(n), first = curSec || n === groupsData[g][0];
     h += `<tr${!curSec && first && n > 1 ? ' class="gs"' : ''}>` + (first ? `<th class="g" rowspan="${curSec ? 1 : groupsData[g][1] - groupsData[g][0] + 1}">${g}</th>` : '') + `<th class="n">سكشن ${n}</th>`;
-    for (let p = 1; p <= 5; p++) { const x = occ[n + '-' + p]; if (x === 'skip') continue; h += x ? `<td rowspan="${curSec ? 1 : x.n}"><div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><b>${x.t}</b>${info(x)}</div></td>` : '<td class="emp"></td>' }
+    for (let p = 1; p <= 5; p++) { 
+      const x = occ[n + '-' + p]; 
+      if (x === 'skip') continue; 
+      const isLecture = x.k === 'محاضرة';
+      const rowspan = curSec ? 1 : (isLecture ? (groupsData[g][1] - groupsData[g][0] + 1) : 1);
+      h += x ? `<td rowspan="${rowspan}"><div class="ev${x.k === 'سكشن' ? ' sec' : ''}"><b>${x.t}</b>${info(x)}</div></td>` : '<td class="emp"></td>';
+    }
     h += '</tr>';
   });
   let l = '';
@@ -545,7 +568,7 @@ function formatFiles(filesArray) {
   return filesArray.filter(f => !f.includes('draft_')).map(f => {
     let name = decodeURIComponent(f.split('/').pop());
     name = name.replace(/\.[^/.]+$/, "").replace(/^\d+_/, "").replace(/_/g, " ");
-    return { t: name, l: encodeURI(f), order: extractOrderNumber(f) };
+    return { t: name, l: encodeURI('/2cyber/' + f), order: extractOrderNumber(f) };
   }).sort((a, b) => a.order - b.order);
 }
 
@@ -602,8 +625,7 @@ function renderSub(id) {
   scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ========== الفيديوهات (جديد) ==========
-let videosData = {};
+// ========== الفيديوهات ==========
 async function loadVideos() {
   try {
     const res = await fetch('videos.json?v=' + new Date().getTime());
