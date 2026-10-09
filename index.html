@@ -284,8 +284,30 @@ dialog{margin:auto}
       </div>
     </div>
     <div class="grid2">
-      <div class="panel"><h3>المحاضرات</h3><small>حسب الدكتور</small><div class="tabs" id="dTabs"></div><div id="dList"></div></div>
-      <div class="panel"><h3>السكاشن</h3><small>حسب المعيد</small><div class="tabs" id="tTabs"></div><div id="tList"></div></div>
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h3 style="margin:0">المحاضرات</h3>
+          <button class="btn sm" style="background:#FF0000;color:white" onclick="openVideoModal(currentSubjectTitle, 'Lectures')">
+            <svg class="i" style="width:16px;height:16px;fill:white;stroke:none;margin-left:4px"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            فيديوهات المحاضرات
+          </button>
+        </div>
+        <small>حسب الدكتور</small>
+        <div class="tabs" id="dTabs"></div>
+        <div id="dList"></div>
+      </div>
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h3 style="margin:0">السكاشن</h3>
+          <button class="btn sm" style="background:#1A73E8;color:white" onclick="openVideoModal(currentSubjectTitle, 'Sections')">
+            <svg class="i" style="width:16px;height:16px;fill:white;stroke:none;margin-left:4px"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            فيديوهات السكاشن
+          </button>
+        </div>
+        <small>حسب المعيد</small>
+        <div class="tabs" id="tTabs"></div>
+        <div id="tList"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -359,11 +381,15 @@ dialog{margin:auto}
     <button class="btn ghost sm" onclick="videoDlg.close()">إغلاق</button>
   </div>
   
-  <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
-  <div id="vLectures" style="margin-bottom:24px"></div>
+  <div id="lecturesSection">
+    <h4 style="color:var(--ac);margin-bottom:12px">📚 المحاضرات</h4>
+    <div id="vLectures" style="margin-bottom:24px"></div>
+  </div>
   
-  <h4 style="color:var(--ac);margin-bottom:12px">📝 السكاشن</h4>
-  <div id="vSections"></div>
+  <div id="sectionsSection">
+    <h4 style="color:var(--ac);margin-bottom:12px"> السكاشن</h4>
+    <div id="vSections"></div>
+  </div>
 </div></dialog>
 
 <nav class="tabbar" id="tabbar"></nav>
@@ -585,9 +611,9 @@ async function loadVideos() {
   } catch(e) { console.log('No videos.json found'); }
 }
 
-function openVideoModal(subject) {
+function openVideoModal(subject, section) {
   const data = videosData[subject] || { Lectures: [], Sections: [] };
-  $('#vTitle').textContent = subject;
+  $('#vTitle').textContent = subject + (section === 'Lectures' ? ' - المحاضرات' : ' - السكاشن');
   
   const renderList = (items) => {
     if (!items || items.length === 0) return '<p class="none" style="padding:10px 0">لا توجد تسجيلات مضافة بعد</p>';
@@ -604,8 +630,15 @@ function openVideoModal(subject) {
     }).join('');
   };
   
-  $('#vLectures').innerHTML = renderList(data.Lectures);
-  $('#vSections').innerHTML = renderList(data.Sections);
+  if (section === 'Lectures') {
+    $('#lecturesSection').style.display = 'block';
+    $('#sectionsSection').style.display = 'none';
+    $('#vLectures').innerHTML = renderList(data.Lectures);
+  } else {
+    $('#lecturesSection').style.display = 'none';
+    $('#sectionsSection').style.display = 'block';
+    $('#vSections').innerHTML = renderList(data.Sections);
+  }
   $('#videoDlg').showModal();
 }
 
