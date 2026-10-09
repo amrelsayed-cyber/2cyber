@@ -4,16 +4,16 @@
       { "title": "قائمة تشغيل المحاضرات الرسمية", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOaq0m6aO9NYkNbKSF-Vy6bfx&si=0dRQGTTUQAKrul8Y", "type": "youtube", "order": 1 },
     ],
     "Sections": [
-      { "title": "سكاشن م/ عمرو عبدالعال", "link": "", "type": "youtube", "order": 1 },
-      { "title": "سكاشن م/ شادي اشرف", "link": "", "type": "drive", "order": 2 }
+      { "title": "", "link": "", "type": "", "order":  },
+      { "title": "", "link": "", "type": "", "order":  }
     ]
   },
   "Networks": {
     "Lectures": [
-      { "title": "محاضرات د. إيهاب رشدي", "link": "", "type": "youtube", "order": 1 }
+      { "title": "", "link": "", "type": "", "order":  }
     ],
     "Sections": [
-      { "title": "فيديو رقم 9 تاسك", "link": "https://drive.google.com/file/d/1UOaX2RTdrw2UHjd-YTDod3YC121RSAjH/view", "type": "youtube", "order": 1 }
+      { "title": "فيديو رقم 9 تاسك", "link": "https://drive.google.com/file/d/1UOaX2RTdrw2UHjd-YTDod3YC121RSAjH/view", "type": "drive", "order": 1 }
     ]
   },
   "Logic Design": {
