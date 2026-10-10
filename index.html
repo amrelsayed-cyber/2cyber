@@ -343,60 +343,147 @@ dialog{margin:auto}
 }
 
 /* =========================================
-   تحسينات خاصة بالموبايل (شاشات أصغر من 640px)
+   1. تحسين كارد التواصل مع الليدر (أعرض وأفضل ترتيباً)
    ========================================= */
+#leader .panel {
+  max-width: 800px; /* توسيع الكارد لتأخذ مساحة مريحة */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* في الشاشات المتوسطة والكبيرة، نجعل اللوجو بجانب النص لتوفير المساحة الرأسية */
+@media (min-width: 640px) {
+  #leader .panel > .brand {
+    flex-direction: row !important;
+    text-align: start !important;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  #leader .panel > .brand > div {
+    text-align: start;
+  }
+  #leader .panel > .brand .logo {
+    width: 72px !important;
+    height: 72px !important;
+    flex-shrink: 0;
+  }
+  #leader .panel > .brand .logo svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+#leader h2 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+#leader .tag {
+  margin: 8px auto 16px auto;
+  display: inline-block;
+}
+
+#leader p {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+}
+
+#leader .btn {
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================================
+   2. تحسين كارد طلب البيانات الجامعية (أعرض وحقول أفضل)
+   ========================================= */
+#request .panel {
+  max-width: 800px; /* توسيع الكارد لتقليل النزول للأسفل */
+  margin: 0 auto;
+}
+
+/* استخدام Grid لترتيب الحقول بجانب بعضها في الشاشات الأكبر */
+#request form {
+  display: grid;
+  grid-template-columns: 1fr; /* في الموبايل: حقل تحت حقل */
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  #request form {
+    grid-template-columns: 1fr 1fr; /* في التابلت والكمبيوتر: حقلين بجانب بعض */
+  }
+  /* جعل حقل "المطلوب" و "الملاحظات" والزر يأخذان العرض الكامل */
+  #request .field:nth-child(3),
+  #request .field:nth-child(4),
+  #request button {
+    grid-column: 1 / -1;
+  }
+}
+
+/* تحسين شكل حقول الإدخال بشكل عصري ومريح */
+#request .field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+#request .field input,
+#request .field select,
+#request .field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background-color: #FAFBFD; /* خلفية فاتحة جداً مريحة للعين */
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+/* حجم خط 16px يمنع الآيفون من عمل Zoom تلقائي */
 @media (max-width: 640px) {
-  /* تقليل الحشو الداخلي (Padding) لإعطاء مساحة أكبر للمحتوى */
-  .panel {
-    padding: 16px;
-    border-radius: 16px;
-  }
-  
-  .panel.narrow {
-    max-width: 100%;
-  }
-
-  .field {
-    margin-bottom: 14px;
-  }
-
-  .field label {
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-
-  /* حجم خط 16px يمنع متصفح الآيفون من عمل Zoom تلقائي عند الكتابة */
-  .field input, 
-  .field select, 
-  .field textarea {
+  #request .field input,
+  #request .field select,
+  #request .field textarea {
+    font-size: 16px;
     padding: 12px 14px;
-    font-size: 16px; 
-    border-radius: 10px;
   }
+}
 
-  /* تحسين مظهر كارد الليدر في الموبايل */
-  #leader .panel {
-    padding: 24px 16px;
-  }
-  
-  #leader h2 {
-    font-size: 20px;
-  }
-  
-  #leader p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
+#request .field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
 
-  #leader .logo {
-    width: 56px !important;
-    height: 56px !important;
-  }
-  
-  #leader .logo svg {
-    width: 26px !important;
-    height: 26px !important;
-  }
+/* تأثير جميل عند الضغط داخل الحقل */
+#request .field input:focus,
+#request .field select:focus,
+#request .field textarea:focus {
+  border-color: var(--ac);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(12, 124, 128, 0.1);
+  outline: none;
+}
+
+/* تحسين زر الإرسال */
+#request button.btn {
+  width: 100%;
+  justify-content: center;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  border-radius: 12px;
 }
 
 </style>
