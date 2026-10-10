@@ -487,21 +487,21 @@ dialog{margin:auto}
 }
 
 
-/* تنسيق الملاحظة الصفراء داخل كارد الطلب فقط */
+/* تنسيق الملاحظة الصفراء لتكون فوق كارد البيانات تماماً وبنفس العرض */
 .form-note {
   background: #FBF4E4;
   border: 1px solid #F0E2BE;
   border-right: 4px solid #B98A2E;
-  border-radius: 12px;
-  padding: 16px 20px;
+  border-radius: 20px; /* مطابق تماماً لـ border-radius الخاص بـ .panel */
+  padding: 24px; /* مطابق للـ padding الخاص بـ .panel */
   color: #6B4E12;
   font-size: 14px;
   line-height: 1.7;
   
-  /* === التعديل الجديد لضمان التوسيط والمحاذاة === */
+  /* === ضمان التطابق التام في العرض والمكان === */
   max-width: 800px; /* نفس عرض كارد البيانات بالضبط */
-  margin: 0 auto 24px auto; /* توسيط في المنتصف تماماً */
   width: 100%;
+  margin: 0 auto 16px auto; /* توسيط في المنتصف مع مسافة 16px تفصلها عن الكارد */
   box-sizing: border-box;
 }
 
@@ -512,11 +512,13 @@ dialog{margin:auto}
   color: #8B6914;
 }
 
+/* تحسين المظهر على الموبايل */
 @media (max-width: 640px) {
   .form-note {
-    padding: 14px 16px;
+    padding: 16px;
     font-size: 13px;
-    max-width: 100%; /* على الموبايل تأخذ العرض المتاح */
+    border-radius: 16px;
+    margin-bottom: 12px;
   }
   .form-note b {
     font-size: 14px;
@@ -639,14 +641,15 @@ dialog{margin:auto}
     <p>اختر المطلوب وسيصل طلبك إلى الليدر على الواتساب بشكل آمن ومباشر.</p>
   </div>
   
-  <form class="panel" onsubmit="sendReq(event)">
-    <div class="form-note">
-      <b>⚠️ لماذا الطلب عن طريق الليدر؟</b>
-      البيانات الجامعية لا يصح لأي أحد الاطلاع عليها، لذلك أرسل رسالة لليدر وسيتم التواصل معك في أقرب وقت. 
-      <br>
-      <span style="opacity: 0.85;">اكتب اسمك بالكامل ورقم موبايلك (لأن واتساب يخفي الرقم إذا كنت تستخدم اليوزر) والمطلوب.</span>
-    </div>
+  <!-- الملاحظة الآن خارج الفورم لتكون فوق الكارد ومتطابقة معها في العرض -->
+  <div class="form-note">
+    <b>⚠️ لماذا الطلب عن طريق الليدر؟</b>
+    البيانات الجامعية لا يصح لأي أحد الاطلاع عليها، لذلك أرسل رسالة لليدر وسيتم التواصل معك في أقرب وقت. 
+    <br>
+    <span style="opacity: 0.85;">اكتب اسمك بالكامل ورقم موبايلك (لأن واتساب يخفي الرقم إذا كنت تستخدم اليوزر) والمطلوب.</span>
+  </div>
 
+  <form class="panel" onsubmit="sendReq(event)">
     <div class="field">
       <label>الاسم بالكامل</label>
       <input id="rn" required placeholder="مثال: أحمد محمد علي">
