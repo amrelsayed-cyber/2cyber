@@ -52,7 +52,7 @@
   },
   "Operations Research": {
     "Lectures": [
-      { "title": "محاضرات د. شيرين زكي", "link": "", "type": "youtube", "order": 1, "hidden": true },
+      { "title": "فيديوهات اول 3 شباتر", "link": "https://drive.google.com/drive/folders/1DVHL6sRr-ysYyCQGA_RbZFIlaYFvmECX?usp=sharing", "type": "drive", "order": 1 },
       { "title": "محاضرات د. محمود إسماعيل", "link": "", "type": "youtube", "order": 2, "hidden": true }
     ],
     "Sections": [
