@@ -25,7 +25,9 @@
     },
     "Sections": {
       "Eng Assem Mostafa": [],
-      "Eng Hassan Hassan": [],
+      "Eng Hassan Hassan": [
+        "materials/Databases/Sections/Eng_Hassan_Hassan/01_Section_1_DB.pdf"
+      ],
       "Eng Shawky El-Sayed": []
     },
     "Exams": []
