@@ -295,7 +295,12 @@ dialog{margin:auto}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
-<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="logo" viewBox="0 0 24 24">
+  <path d="M4 14c0-4 3.5-7 8-7s8 3 8 7v2H4v-2z" fill="currentColor"/>
+  <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"/>
+  <rect x="10" y="10" width="4" height="3" rx="0.5" fill="white"/>
+  <path d="M11 10V8.5a1 1 0 0 1 2 0V10" stroke="white" stroke-width="0.8" fill="none"/>
+</symbol>
 <symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
 <symbol id="book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5M9 7h6"/></symbol>
 <symbol id="users" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3 3-5 6-5s6 2 6 5M17 5a3 3 0 0 1 0 6M21 20c0-2-1-4-3-4.6"/></symbol>
@@ -310,7 +315,7 @@ dialog{margin:auto}
 
 <header><div class="wrap">
   <a href="#" class="brand" onclick="go('home');return false">
-    <span class="logo"><svg class="i"><use href="#shield"/></svg></span>
+    <span class="logo"><svg class="i"><use href="#logo"/></svg></span>
     <span><b>CyberHat</b><small>CyberSecurity • BY. Amr Elsayed</small></span>
   </a>
   <nav class="nav" id="nav"></nav>
@@ -413,7 +418,7 @@ dialog{margin:auto}
 
 <section id="leader" class="view">
   <div class="panel narrow mid" style="color:var(--ink)">
-    <div class="brand" style="justify-content:center;margin-bottom:12px"><span class="logo" style="width:64px;height:64px;border-radius:50%"><svg class="i" style="width:30px;height:30px"><use href="#shield"/></svg></span></div>
+    <div class="brand" style="justify-content:center;margin-bottom:12px"><span class="logo" style="width:64px;height:64px;border-radius:50%"><svg class="i" style="width:30px;height:30px"><use href="#logo"/></svg></span>
     <h2 style="font-size:22px">عمرو السيد (Amr Elsayed)</h2>
     <p class="tag" style="margin:6px 0 14px">ليدر الدفعة ومطور المنصة</p>
     <p style="color:var(--mut);margin-bottom:20px">هدف المنصة تنظيم المحاضرات والسكاشن وخدمة كل طالب في الأمن السيبراني. لأي مشكلة أكاديمية أو اقتراح، تواصل معي مباشرة.</p>
