@@ -842,8 +842,8 @@ async function loadMaterials() {
         title: title,
         code: "الفرقة الثانية",
         desc: title,
-        doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({ name: "د. " + name, items: formatFiles(files) })),
-        tas: Object.entries(details.Sections || {}).map(([name, files]) => ({ name: "م. " + name, items: formatFiles(files) })),
+        doctors: Object.entries(details.Lectures || {}).map(([name, files]) => ({ name: "" + name, items: formatFiles(files) })),
+        tas: Object.entries(details.Sections || {}).map(([name, files]) => ({ name: "" + name, items: formatFiles(files) })),
         exams: formatFiles(details.Exams || [])
       };
     }).filter(item => item !== null);
