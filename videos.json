@@ -2,7 +2,9 @@
   "Data Structures": {
     "Lectures": [
       { "title": "قائمة تشغيل المحاضرات الرسمية - د. محمود النامولي", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOaq0m6aO9NYkNbKSF-Vy6bfx&si=0dRQGTTUQAKrul8Y", "type": "youtube", "order": 1 },
-      { "title": "محاضرات د. ليلى عبد الفتاح", "link": "", "type": "youtube", "order": 2, "hidden": true }
+      { "title": "Stack Video - Dr. Laila", "link": "https://drive.google.com/file/d/1_0KmLuna3c_B6puUn8xq0OajXWuO09qG/view", "type": "drive", "order": 2, "hidden": true },
+      { "title": "Queue Video - Dr. Laila", "link": "https://drive.google.com/file/d/1nQwTXculbpJ2Si85zIpzbNVjRkkLgxMt/view", "type": "drive", "order": 3, "hidden": true },
+      { "title": "PriorityQueue_STL Video - Dr. Laila", "link": "https://drive.google.com/file/d/1zceOVtRkZHMw2QGI2eLkwcuVyCdeh5kl/view", "type": "drive", "order": 4, "hidden": true }
     ],
     "Sections": [
       { "title": "سكاشن م/ عمرو عبدالعال", "link": "", "type": "youtube", "order": 1, "hidden": true },
