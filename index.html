@@ -291,6 +291,114 @@ dialog{margin:auto}
   }
 }
 
+/* =========================================
+   تحسين كارد البيانات الجامعية والتواصل مع الليدر
+   ========================================= */
+
+/* ضمان أن الكارد يأخذ عرضاً مريحاً في كل الشاشات */
+.panel.narrow {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* تحسين حقول الإدخال لتكون سهلة اللمس والكتابة */
+.field input, 
+.field select, 
+.field textarea {
+  width: 100%;
+  font-size: 15px;
+  min-height: 48px; /* حجم مثالي لأصبع اليد على الموبايل */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field textarea {
+  min-height: 90px;
+  resize: vertical; /* يسمح للمستخدم بتكبير مربع النص عمودياً فقط */
+}
+
+.field input:focus, 
+.field select:focus, 
+.field textarea:focus {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px rgba(12, 124, 128, 0.1); /* تأثير بصري جميل عند الكتابة */
+}
+
+/* جعل زر الإرسال عريضاً ومريحاً في كل الشاشات */
+#request .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+#leader .btn {
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+/* =========================================
+   تحسينات خاصة بالموبايل (شاشات أصغر من 640px)
+   ========================================= */
+@media (max-width: 640px) {
+  /* تقليل الحشو الداخلي (Padding) لإعطاء مساحة أكبر للمحتوى */
+  .panel {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  
+  .panel.narrow {
+    max-width: 100%;
+  }
+
+  .field {
+    margin-bottom: 14px;
+  }
+
+  .field label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  /* حجم خط 16px يمنع متصفح الآيفون من عمل Zoom تلقائي عند الكتابة */
+  .field input, 
+  .field select, 
+  .field textarea {
+    padding: 12px 14px;
+    font-size: 16px; 
+    border-radius: 10px;
+  }
+
+  /* تحسين مظهر كارد الليدر في الموبايل */
+  #leader .panel {
+    padding: 24px 16px;
+  }
+  
+  #leader h2 {
+    font-size: 20px;
+  }
+  
+  #leader p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  #leader .logo {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  
+  #leader .logo svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+
 </style>
 </head>
 <body>
