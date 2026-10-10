@@ -486,6 +486,39 @@ dialog{margin:auto}
   border-radius: 12px;
 }
 
+
+/* تنسيق الملاحظة الصفراء داخل كارد الطلب فقط */
+.form-note {
+  background: #FBF4E4;
+  border: 1px solid #F0E2BE;
+  border-right: 4px solid #B98A2E;
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: #6B4E12;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-note b {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #8B6914;
+}
+
+@media (max-width: 640px) {
+  .form-note {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+  .form-note b {
+    font-size: 14px;
+  }
+}
+  
 </style>
 </head>
 <body>
@@ -597,14 +630,42 @@ dialog{margin:auto}
 </section>
 
 <section id="request" class="view">
-  <div class="vh"><h2>طلب البيانات الجامعية</h2><p>اختر المطلوب وسيصل طلبك إلى الليدر على الواتساب.</p></div>
-  <div class="note"><b>لماذا الطلب عن طريق الليدر؟</b><br>البيانات الجامعية لا يصح لأي أحد الاطلاع عليها، لذلك أرسل رسالة لليدر وسيتم التواصل معك في أقرب وقت. اكتب اسمك بالكامل ورقم موبايلك (لأن واتساب يخفي الرقم إذا كنت تستخدم اليوزر) والمطلوب.</div>
-  <form class="panel narrow" onsubmit="sendReq(event)">
-    <div class="field"><label>الاسم بالكامل</label><input id="rn" required placeholder="مثال: أحمد محمد علي"></div>
-    <div class="field"><label>رقم الواتساب</label><input id="rp" type="tel" required placeholder="01xxxxxxxxx"></div>
-    <div class="field"><label>المطلوب</label><select id="rt"><option>الإيميل الجامعي والباسورد</option><option>الكود الجامعي</option><option>بيانات قيد طالب</option><option>بيانات أخرى</option></select></div>
-    <div class="field"><label>ملاحظات (اختياري)</label><textarea id="rm" rows="2"></textarea></div>
-    <button class="btn" style="width:100%;justify-content:center;padding:12px">إرسال الطلب عبر الواتساب</button>
+  <div class="vh">
+    <h2>طلب البيانات الجامعية</h2>
+    <p>اختر المطلوب وسيصل طلبك إلى الليدر على الواتساب بشكل آمن ومباشر.</p>
+  </div>
+  
+  <form class="panel" onsubmit="sendReq(event)">
+    <div class="form-note">
+      <b>⚠️ لماذا الطلب عن طريق الليدر؟</b>
+      البيانات الجامعية لا يصح لأي أحد الاطلاع عليها، لذلك أرسل رسالة لليدر وسيتم التواصل معك في أقرب وقت. 
+      <br>
+      <span style="opacity: 0.85;">اكتب اسمك بالكامل ورقم موبايلك (لأن واتساب يخفي الرقم إذا كنت تستخدم اليوزر) والمطلوب.</span>
+    </div>
+
+    <div class="field">
+      <label>الاسم بالكامل</label>
+      <input id="rn" required placeholder="مثال: أحمد محمد علي">
+    </div>
+    <div class="field">
+      <label>رقم الواتساب</label>
+      <input id="rp" type="tel" required placeholder="01xxxxxxxxx">
+    </div>
+    <div class="field">
+      <label>المطلوب</label>
+      <select id="rt">
+        <option>الإيميل الجامعي والباسورد</option>
+        <option>الكود الجامعي</option>
+        <option>بيانات قيد طالب</option>
+        <option>بيانات أخرى</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>ملاحظات (اختياري)</label>
+      <textarea id="rm" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
+    </div>
+    
+    <button class="btn" type="submit">إرسال الطلب عبر الواتساب</button>
   </form>
 </section>
 
