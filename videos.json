@@ -44,12 +44,12 @@
   },
   "Operating Systems": {
     "Lectures": [
-      { "title": "محاضرات د. مروة عبدالإله", "link": "", "type": "youtube", "order": 1, "hidden": true }
+      { "title": "بلاي ليست ل د/ حسن الانصاري", "link": "https://www.youtube.com/playlist?list=PLKlTaCM87WvrO0RElCsK30uS-ylzRLgFM", "type": "youtube", "order": 1, "hidden": true }
     ],
     "Sections": [
       { "title": "سكاشن م/ روان طارق", "link": "", "type": "youtube", "order": 1, "hidden": true },
       { "title": "سكاشن م/ شروق أسامة", "link": "", "type": "youtube", "order": 2, "hidden": true },
-      { "title": "سكاشن م/ شادي أشرف", "link": "", "type": "youtube", "order": 3, "hidden": true }
+      { "title": "د/ محمود النامولى - نظم تشغيل", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOarXftg7yTBWS-xf4wg46iOB", "type": "youtube", "order": 1, "hidden": true }
     ]
   },
   "Operations Research": {
