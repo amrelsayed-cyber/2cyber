@@ -1,0 +1,31 @@
+DOS Commands
+================
+cd
+cd..
+cd/
+cd path
+dir
+cd dir_name
+
+md dir_name
+rd dir_name
+
+copy con file_name.txt
+type file_name.txt
+sort file_name.txt
+del file_name.txt
+
+copy file_name.txt dir_name.txt
+move file_name.txt dir_name.txt
+
+rd /s
+ren dir_old_name dir_new_name
+attrib +h +s dir_name
+attrib -h -s dir_name
+
+cls
+ver
+D:
+label
+echo "print"
+F7

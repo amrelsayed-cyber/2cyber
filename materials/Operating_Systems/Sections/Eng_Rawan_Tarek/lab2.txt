@@ -1,0 +1,59 @@
+commands
+========
+pwd
+
+cd
+cd dir_name
+cd path
+cd /
+cd ~
+cd -
+cd ..
+
+ls
+ls -a
+ls -l
+ls -lh
+
+
+questions
+========
+1. display your current directory
+pwd
+
+2. change to the /etc directory
+cd /etc
+
+3. now change to your home directory using only three key presses
+cd
+
+4. change to the /boot/grub directory 
+cd /boot/grub
+note: cd / then press tab this will show you all dirs in / and the same for cd /boot/ then press tab to see the dirs in boot
+
+5. go to the parent directory of the current directory
+cd ..
+
+6. go to the root directory
+cd /
+
+7. list the contents of the root directory
+ls
+
+8. list a long listing of the root directory
+ls -l
+
+9. stay where you are and list the contents of /etc
+ls etc
+
+10. stay where you are and list the contents of /bin and /sbin
+ls bin sbin
+
+11. stay where you are and list the contents of ~
+ls ~
+
+12. list all the files (including hidden files) in your home directory
+ls -a ~
+
+13. list the files in /boot in a human readable format
+ls -lh boot
