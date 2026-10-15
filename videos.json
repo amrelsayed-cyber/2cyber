@@ -2,7 +2,7 @@
   "Data Structures": {
     "Lectures": [
       { "title": "قائمة تشغيل المحاضرات الرسمية - د. محمود النامولي", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOaq0m6aO9NYkNbKSF-Vy6bfx&si=0dRQGTTUQAKrul8Y", "type": "youtube", "order": 1 },
-      { "title": "Stack Video - Dr. Laila", "link": "https://drive.google.com/file/d/1_0KmLuna3c_B6puUn8xq0OajXWuO09qG/view", "type": "drive", "order": 2, "hidden": true },
+      { "title": "Stack Video - Dr. Laila", "link": "https://drive.google.com/file/d/1_0KmLuna3c_B6puUn8xq0OajXWuO09qG/view", "type": "drive", "order": 2 },
       { "title": "Queue Video - Dr. Laila", "link": "https://drive.google.com/file/d/1nQwTXculbpJ2Si85zIpzbNVjRkkLgxMt/view", "type": "drive", "order": 3, "hidden": true },
       { "title": "PriorityQueue_STL Video - Dr. Laila", "link": "https://drive.google.com/file/d/1zceOVtRkZHMw2QGI2eLkwcuVyCdeh5kl/view", "type": "drive", "order": 4, "hidden": true }
     ],
@@ -28,7 +28,7 @@
     ],
     "Sections": [
       { "title": "سكاشن م/ إيمان رضا", "link": "", "type": "youtube", "order": 1, "hidden": true },
-      { "title": "سكاشن م/ رحمة عبدالكريم", "link": "", "type": "youtube", "order": 2, "hidden": true }
+      { "title": "numbering systems شرح", "link": "https://www.youtube.com/playlist?list=PLEsisZxbZudhEu3GTlbPostQUejSobJIs", "type": "youtube", "order": 2 }
     ]
   },
   "Databases": {
@@ -44,12 +44,12 @@
   },
   "Operating Systems": {
     "Lectures": [
-      { "title": "بلاي ليست ل د/ حسن الانصاري", "link": "https://www.youtube.com/playlist?list=PLKlTaCM87WvrO0RElCsK30uS-ylzRLgFM", "type": "youtube", "order": 1, "hidden": true }
+      { "title": "بلاي ليست ل د/ حسن الانصاري", "link": "https://www.youtube.com/playlist?list=PLKlTaCM87WvrO0RElCsK30uS-ylzRLgFM", "type": "youtube", "order": 1 }
     ],
     "Sections": [
       { "title": "سكاشن م/ روان طارق", "link": "", "type": "youtube", "order": 1, "hidden": true },
       { "title": "سكاشن م/ شروق أسامة", "link": "", "type": "youtube", "order": 2, "hidden": true },
-      { "title": "د/ محمود النامولى - نظم تشغيل", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOarXftg7yTBWS-xf4wg46iOB", "type": "youtube", "order": 1, "hidden": true }
+      { "title": "د/ محمود النامولى - نظم تشغيل", "link": "https://www.youtube.com/playlist?list=PL0emvdC_vOarXftg7yTBWS-xf4wg46iOB", "type": "youtube", "order": 1 }
     ]
   },
   "Operations Research": {
