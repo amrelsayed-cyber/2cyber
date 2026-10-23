@@ -23,7 +23,11 @@
   "Databases": {
     "Lectures": {
       "Dr Ahmed Samy": [],
-      "Dr Mohamed Maher": []
+      "Dr Mohamed Maher": [
+        "materials/Databases/Lectures/Dr_Mohamed_Maher/01_Databases and Database Users.pdf",
+        "materials/Databases/Lectures/Dr_Mohamed_Maher/02_lec_4,5.pdf",
+        "materials/Databases/Lectures/Dr_Mohamed_Maher/03_lec_6.pdf"
+      ]
     },
     "Sections": {
       "Eng Assem Mostafa": [],
