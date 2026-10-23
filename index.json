@@ -36,7 +36,9 @@
       ]
     },
     "Sections": {
-      "Eng Assem Mostafa": [],
+      "Eng Assem Mostafa": [
+        "materials/Databases/Sections/Eng_Assem_Mostafa/01_Introduction_to_Databases.pptx"
+      ],
       "Eng Hassan Hassan": [
         "materials/Databases/Sections/Eng_Hassan_Hassan/01_Section_1_DB.pdf"
       ],
