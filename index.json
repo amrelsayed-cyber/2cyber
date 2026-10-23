@@ -2,8 +2,8 @@
   "Data Structures": {
     "Lectures": {
       "Dr Laila Abdelfattah": [
-        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/Lecture 4_Stacks.pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/01_Lecture_1.pdf",
+        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/04_Lecture_4_Stacks.pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/03_Lecture_3_Recursion.pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/05_Lecture_5_Dynamic_Array_(Vector).pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/02_lecture_2_linked_list.pdf"
@@ -60,6 +60,7 @@
   "Networks": {
     "Lectures": {
       "Dr Ehab Roshdy": [
+        "materials/Networks/Lectures/Dr_Ehab_Roshdy/04_Lecture_4 _Network_2.pdf",
         "materials/Networks/Lectures/Dr_Ehab_Roshdy/02_Lecture_2_Network_2027.pdf",
         "materials/Networks/Lectures/Dr_Ehab_Roshdy/01_Lecture_1_Network_2027.pdf",
         "materials/Networks/Lectures/Dr_Ehab_Roshdy/03_Lecture_3_Network_2027.pdf"
