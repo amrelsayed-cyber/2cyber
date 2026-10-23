@@ -17,7 +17,11 @@
       ]
     },
     "Sections": {
-      "Eng Amr Abdelaal": [],
+      "Eng Amr Abdelaal": [
+        "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/02_Section_2_Linked_List.docx",
+        "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/03_Section_3_Recursive_Functions.docx",
+        "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/01_Section_1_Arrays_Template.docx"
+      ],
       "Eng Shady Ashraf": []
     },
     "Exams": []
