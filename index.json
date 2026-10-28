@@ -2,28 +2,27 @@
   "Data Structures": {
     "Lectures": {
       "Dr Laila Abdelfattah": [
-        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/02_lecture_2_linked_list.pdf",
-        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/05_Lecture_5_Dynamic_Array_(Vector).pdf",
+        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/01_Lecture_1.pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/04_Lecture_4_Stacks.pdf",
         "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/03_Lecture_3_Recursion.pdf",
-        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/01_Lecture_1.pdf"
+        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/05_Lecture_5_Dynamic_Array_(Vector).pdf",
+        "materials/Data_Structures/Lectures/Dr_Laila_Abdelfattah/02_lecture_2_linked_list.pdf"
       ],
       "Dr Mahmoud Elnamoly": [
-        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/02_Lecture_2_Static_Array.pdf",
-        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/03_Lecture_3_Dynamic_Array_(Vector).pdf",
-        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/04_Lecture_4_Linked_List.pdf",
         "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/06_Lecture_6_Queue.pdf",
-        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/01_Lecture_1_Intro.pdf",
-        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/05_Lecture_5_Stack.pdf"
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/02_Lecture_2_Static_Array.pdf",
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/04_Lecture_4_Linked_List.pdf",
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/05_Lecture_5_Stack.pdf",
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/03_Lecture_3_Dynamic_Array_(Vector).pdf",
+        "materials/Data_Structures/Lectures/Dr_Mahmoud_Elnamoly/01_Lecture_1_Intro.pdf"
       ]
     },
     "Sections": {
       "Eng Amr Abdelaal": [
-        "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/03_Section_3_Recursive_Functions.docx",
         "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/02_Section_2_Linked_List.docx",
+        "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/03_Section_3_Recursive_Functions.docx",
         "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/01_Section_1_Arrays_Template.docx"
-      ],
-      "Eng Shady Ashraf": []
+      ]
     },
     "Exams": []
   },
@@ -31,15 +30,15 @@
     "Lectures": {
       "Dr Ahmed Samy": [],
       "Dr Mohamed Maher": [
+        "materials/Databases/Lectures/Dr_Mohamed_Maher/01_Databases and Database Users.pdf",
         "materials/Databases/Lectures/Dr_Mohamed_Maher/02_lec_4,5.pdf",
-        "materials/Databases/Lectures/Dr_Mohamed_Maher/03_lec_6.pdf",
-        "materials/Databases/Lectures/Dr_Mohamed_Maher/01_Databases and Database Users.pdf"
+        "materials/Databases/Lectures/Dr_Mohamed_Maher/03_lec_6.pdf"
       ]
     },
     "Sections": {
       "Eng Assem Mostafa": [
-        "materials/Databases/Sections/Eng_Assem_Mostafa/01_Introduction_to_Databases.pptx",
-        "materials/Databases/Sections/Eng_Assem_Mostafa/Oracle_Database_11g_SQL_Fundamentals_Course.pdf"
+        "materials/Databases/Sections/Eng_Assem_Mostafa/Oracle_Database_11g_SQL_Fundamentals_Course.pdf",
+        "materials/Databases/Sections/Eng_Assem_Mostafa/01_Introduction_to_Databases.pptx"
       ],
       "Eng Hassan Hassan": [
         "materials/Databases/Sections/Eng_Hassan_Hassan/01_Section_1_DB.pdf"
@@ -70,16 +69,16 @@
   "Networks": {
     "Lectures": {
       "Dr Ehab Roshdy": [
-        "materials/Networks/Lectures/Dr_Ehab_Roshdy/03_Lecture_3_Network_2027.pdf",
+        "materials/Networks/Lectures/Dr_Ehab_Roshdy/04_Lecture_4 _Network_2.pdf",
         "materials/Networks/Lectures/Dr_Ehab_Roshdy/02_Lecture_2_Network_2027.pdf",
         "materials/Networks/Lectures/Dr_Ehab_Roshdy/01_Lecture_1_Network_2027.pdf",
-        "materials/Networks/Lectures/Dr_Ehab_Roshdy/04_Lecture_4 _Network_2.pdf"
+        "materials/Networks/Lectures/Dr_Ehab_Roshdy/03_Lecture_3_Network_2027.pdf"
       ],
       "Dr Walaa Elhady": [
-        "materials/Networks/Lectures/Dr_Walaa_Elhady/03_Lecture_3_Network_2027.pdf",
+        "materials/Networks/Lectures/Dr_Walaa_Elhady/04_Lecture_4 _Network_2.pdf",
         "materials/Networks/Lectures/Dr_Walaa_Elhady/02_Lecture_2_Network_2027.pdf",
         "materials/Networks/Lectures/Dr_Walaa_Elhady/01_Lecture_1_Network_2027.pdf",
-        "materials/Networks/Lectures/Dr_Walaa_Elhady/04_Lecture_4 _Network_2.pdf"
+        "materials/Networks/Lectures/Dr_Walaa_Elhady/03_Lecture_3_Network_2027.pdf"
       ]
     },
     "Sections": {
@@ -97,8 +96,8 @@
     "Sections": {
       "Eng Rawan Tarek": [
         "materials/Operating_Systems/Sections/Eng_Rawan_Tarek/01_lab_1.txt",
-        "materials/Operating_Systems/Sections/Eng_Rawan_Tarek/02_lab_2.txt",
-        "materials/Operating_Systems/Sections/Eng_Rawan_Tarek/03_lab_3.txt"
+        "materials/Operating_Systems/Sections/Eng_Rawan_Tarek/03_lab_3.txt",
+        "materials/Operating_Systems/Sections/Eng_Rawan_Tarek/02_lab_2.txt"
       ],
       "Eng Shady Ashraf": [],
       "Eng Shorouk Osama": []
@@ -108,12 +107,12 @@
   "Operations Research": {
     "Lectures": {
       "Dr Mahmoud Ismail": [
-        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/02_Chapter_2_OR.pdf",
-        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/01_Chapter_1_OR.pdf"
+        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/01_Chapter_1_OR.pdf",
+        "materials/Operations_Research/Lectures/Dr_Mahmoud_Ismail/02_Chapter_2_OR.pdf"
       ],
       "Dr Shereen Zaky": [
-        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/02_Chapter_2_OR.pdf",
-        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/01_Chapter_1_OR.pdf"
+        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/01_Chapter_1_OR.pdf",
+        "materials/Operations_Research/Lectures/Dr_Shereen_Zaky/02_Chapter_2_OR.pdf"
       ]
     },
     "Sections": {
