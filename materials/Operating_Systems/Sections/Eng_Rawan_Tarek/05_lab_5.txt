@@ -1,0 +1,37 @@
+Exercises
+=======
+1. list the files in the /bin directory
+ls /bin
+
+2.display the type of file of /bin/cat, /etc/passwd and /usr/bin/passwd
+file /bin/cat /etc/passwd /usr/bin/passwd
+
+3. create a directory ~/touched and enter it
+mkdir ~/touched ; cd ~/touched
+
+4. create the files today.txt and yesterday.txt in touched
+touch today.txt yesterday.txt
+
+5. change the date of yesterday.txt to match yesterday's date
+touch -t 202610230715 yesterday.txt
+
+6. copy yesterday.txt to copy.yesterday.txt
+cp yesterday.txt copy.yesterday.txt
+
+7. rename copy.yesterday.txt to kim
+mv copy.yesterday.txt kim
+
+8. create a directory called ~/testbackup and copy all files from ~/touched into it
+mkdir ~/testbackup 
+cp ~/touched/* ~/testbackup
+
+9. use one command to remove the directory ~/testbackup and all files into it
+rm -rf ~/testbackup
+
+10. create a directory ~/etcbackup and copy all *.conf files from /etc into it. 
+mkdir ~/etcbackup  
+cp /etc/*.conf ~/etcbackup
+
+11. use rename to rename *.conf files to *.backup
+cd ~/etcbackup
+rename 's/\.conf/\.backup/' *.conf

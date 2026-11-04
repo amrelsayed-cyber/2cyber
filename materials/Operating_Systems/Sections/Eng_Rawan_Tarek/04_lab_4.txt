@@ -1,0 +1,17 @@
+commands
+========
+file
+ 
+touch
+touch -t
+
+rm
+rm -rf
+
+cp
+cp -i
+cp -r
+
+mv
+
+rename
