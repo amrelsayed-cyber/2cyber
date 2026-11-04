@@ -28,7 +28,10 @@
   },
   "Databases": {
     "Lectures": {
-      "Dr Ahmed Samy": [],
+      "Dr Ahmed Samy": [
+        "materials/Databases/Lectures/Dr_Ahmed_Samy/02_lec 4,5.ppt",
+        "materials/Databases/Lectures/Dr_Ahmed_Samy/3_lec 6.pptx"
+      ],
       "Dr Mohamed Maher": [
         "materials/Databases/Lectures/Dr_Mohamed_Maher/02_lec_4,5.pdf",
         "materials/Databases/Lectures/Dr_Mohamed_Maher/03_lec_6.pdf",
