@@ -24,7 +24,9 @@
         "materials/Data_Structures/Sections/Eng_Amr_Abdelaal/01_Section_1_Arrays_Template.docx"
       ]
     },
-    "Exams": []
+    "Exams": [
+      "materials/Data_Structures/Exams/draft"
+    ]
   },
   "Databases": {
     "Lectures": {
