@@ -916,6 +916,10 @@ async function loadMaterials() {
       };
     }).filter(item => item !== null);
     renderSubjects();
+        // === 🌟 الإصلاح الجذري هنا: إذا كان المستخدم في صفحة الامتحانات، قم بتحديثها فور انتهاء التحميل ===
+    if (document.getElementById('exams').classList.contains('on')) {
+      exGrid();
+    }
   } catch (e) {
     console.error('Materials load error:', e);
     $('#subGrid').innerHTML = '<div class="mid"><p>لم يتم رفع أي ملفات بعد أو جاري التحميل.</p></div>';
@@ -1099,7 +1103,12 @@ function lookup() {
   $('#lOut').innerHTML = `<div class="panel mid"><b style="color:var(--ink)">جاري تجهيز نظام البحث</b><p>سيتم ربط هذا القسم بقاعدة بيانات الطلاب قريباً.</p></div>`;
 }
 function exGrid() {
-  if (subjectsData.length === 0) { $('#exGrid').innerHTML = '<div class="panel mid"><b style="color:var(--ink)">غير متوفرة حاليًا</b><p>تتوفر امتحانات الأعوام السابقة قبل الامتحانات بأسبوعين.</p></div>'; return; }
+  // إذا كانت البيانات لم تحمل بعد، نعرض أيقونة تحميل احترافية بدلاً من رسالة "غير متوفرة"
+  if (subjectsData.length === 0) {
+    $('#exGrid').innerHTML = '<div class="panel mid"><svg class="i" style="width:32px;height:32px;margin:0 auto 12px;animation:spin 1.5s linear infinite"><use href="#chart"/></svg><b style="color:var(--ink)">جاري تحميل بيانات المواد...</b><p style="font-size:13px; margin-top:8px">يرجى الانتظار لحظة</p></div>';
+    return;
+  }
+  
   $('#exGrid').className = 'grid2';
   $('#exGrid').innerHTML = subjectsData.map(s => `<div class="panel"><span class="tag">${s.code}</span><h3 style="margin:6px 0 4px">${s.title}</h3>${s.exams.length ? s.exams.map(e => `<div class="row"><span>${e.t}</span><a class="btn ghost sm" href="${e.l}" target="_blank" rel="noopener">تحميل</a></div>`).join('') : '<p style="color:var(--mut);padding:10px 0">لم تُرفع امتحانات بعد</p>'}</div>`).join('');
 }
