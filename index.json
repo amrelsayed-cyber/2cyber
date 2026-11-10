@@ -81,7 +81,9 @@
       "Eng Eman Reda": [],
       "Eng Rahma Abdelkarim": []
     },
-    "Exams": []
+    "Exams": [
+      "materials/Logic_Design/Exams/txtr.txt"
+    ]
   },
   "Networks": {
     "Lectures": {
