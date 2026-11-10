@@ -121,7 +121,9 @@
       "Eng Shady Ashraf": [],
       "Eng Shorouk Osama": []
     },
-    "Exams": []
+    "Exams": [
+      "materials/Operating_Systems/Exams/draft-12.txt"
+    ]
   },
   "Operations Research": {
     "Lectures": {
