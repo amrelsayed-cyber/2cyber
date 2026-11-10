@@ -99,7 +99,9 @@
       "Eng Ahmed Awad": [],
       "Eng Hania Wael": []
     },
-    "Exams": []
+    "Exams": [
+      "materials/Networks/Exams/draft-34"
+    ]
   },
   "Operating Systems": {
     "Lectures": {
